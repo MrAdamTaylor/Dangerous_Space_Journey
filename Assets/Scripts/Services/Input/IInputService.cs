@@ -6,8 +6,7 @@ namespace Services.Input
     { 
         float AxisMove { get; }
         float AxisTorque { get; }
-
-        bool Checking(float cordinate);
+        
         
         bool IsAttackButtonUp();
 

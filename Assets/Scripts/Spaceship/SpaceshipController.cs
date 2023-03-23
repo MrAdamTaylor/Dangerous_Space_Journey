@@ -65,9 +65,6 @@ public class SpaceshipController : MonoBehaviour
             _rotationVector.y = rotate;
         }
 
-        if(_inputService.Checking(transform.position.z))
-            Debug.Log("Сервис сработал на проверку границ кординат");
-        
 
         Vector3 _newPos = transform.position;
         _borderService.BorderCheck(ref _newPos);

@@ -7,14 +7,6 @@ namespace Services.Input
     {
         public Vector3 _movementVector;
 
-        public override bool Checking(float cordinates)
-        {
-            if (cordinates > 20f)
-                return true;
-            else
-                return false;
-        }
-
         public override float AxisMove
         {
             get
