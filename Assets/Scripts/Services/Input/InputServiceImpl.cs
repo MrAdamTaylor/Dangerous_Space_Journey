@@ -23,7 +23,6 @@ namespace Services.Input
                 float axis = UnityEngine.Input.GetAxis("Horizontal");
                 return axis;
             }
-
         }
     }
 }

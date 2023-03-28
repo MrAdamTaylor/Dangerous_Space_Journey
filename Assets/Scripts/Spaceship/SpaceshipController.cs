@@ -44,16 +44,16 @@ public class SpaceshipController : MonoBehaviour
         }
 
 
-        if ((_inputService.AxisMove > Constants.PositiveEpsilonRange) || 
+        /*if ((_inputService.AxisMove > Constants.PositiveEpsilonRange) || 
             (_inputService.AxisMove < Constants.NegativeEpsilonRange))
         {
             _movementVector = transform.forward;
             _thrustSpeed = _thrust * _inputService.AxisMove * Time.deltaTime * _tempSpeed;
-        }
+        }*/
 
-        if ((_inputService.AxisTorque > Constants.PositiveEpsilonRange) || 
+        /*if ((_inputService.AxisTorque > Constants.PositiveEpsilonRange) || 
             (_inputService.AxisTorque < Constants.NegativeEpsilonRange))
-        {
+        {*/
             rotate = Input.GetAxisRaw("Horizontal") * Time.deltaTime * _turnTrust;
 
             _yRotation += rotate;
@@ -62,23 +62,24 @@ public class SpaceshipController : MonoBehaviour
             //_rotationVector = transform.up;
             //_turnSpeed = _turnTrust * _inputService.AxisTorque * Time.deltaTime;
 
-            _rotationVector.y = rotate;
-        }
+            //_rotationVector.y = rotate;
+       // }
 
 
-        Vector3 _newPos = transform.position;
+        /*Vector3 _newPos = transform.position;
         _borderService.BorderCheck(ref _newPos);
-        transform.position = _newPos;
+        transform.position = _newPos;*/
+
 
         
     }
 
     void FixedUpdate()
     {
-        _rigBodySpaceShip.AddRelativeForce(_movementVector * _thrustSpeed);
-        transform.Rotate(_rotationVector);
-        //transform.rotation = Quaternion.Euler(0,_yRotation,0);
-        
+        //_rigBodySpaceShip.AddRelativeForce(_movementVector * _thrustSpeed);
+        //transform.Rotate(_rotationVector);
+        transform.rotation = Quaternion.Euler(0,_yRotation,0);
+
         //TODO реализация через сервис, которая работает
         //_rigBodySpaceShip.AddTorque(_rotationVector * _turnSpeed);
     }

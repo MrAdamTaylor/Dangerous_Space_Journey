@@ -13,7 +13,7 @@ public class EventBus
     }
 
     //Поиск по типу и добавление в словарь
-    public void Subscrive<T>(EventHandler eventHandler) where T: EventArgs
+    public void Subscribe<T>(EventHandler eventHandler) where T: EventArgs
     {
         var type = typeof(T);
         if (!_subscriberByType.TryGetValue(type, out var subscribers))

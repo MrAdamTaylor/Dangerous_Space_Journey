@@ -6,9 +6,17 @@ namespace Services.Input
     { 
         float AxisMove { get; }
         float AxisTorque { get; }
-        
-        
-        bool IsAttackButtonUp();
 
+        bool IsAttackButtonUp();
+    }
+
+    class InputServiceImplementation2 : IInputService
+    {
+        public float AxisMove { get; }
+        public float AxisTorque { get; }
+        public bool IsAttackButtonUp()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
