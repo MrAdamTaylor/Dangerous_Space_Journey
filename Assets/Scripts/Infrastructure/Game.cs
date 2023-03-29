@@ -1,16 +1,13 @@
 using Services.BorderService;
 using Services.Input;
-using Services.Input2;
 using UnityEngine;
 
 namespace Infrastructure
 {
     class Game
     {
-        public static IInputService InputService
-        { get; set; }
 
-        public static IInputService2 InputService2
+        public static IInputServiceMove InputServiceMove
         {
             get;
             set;
@@ -18,10 +15,25 @@ namespace Infrastructure
 
         public static IBorderChecker BorderService;
 
+        public static IInputServiceShoot InputServiceShoot { get; set; }
+
         public Game()
         {
             RegisterInputService();
             RegisterBorderService();
+            RegisterShootService();
+        }
+
+        private void RegisterShootService()
+        {
+            if (Application.isEditor)
+            {
+                InputServiceShoot = new InputServiceShootImpl();
+            }
+            else
+            {
+                InputServiceShoot = new InputServiceShootImpl();
+            }
         }
 
         private void RegisterBorderService()
@@ -33,17 +45,13 @@ namespace Infrastructure
         {
             if (Application.isEditor)
             {
-                InputService2 = new InputService2Impl();
+                InputServiceMove = new InputServiceMoveImpl();
             }
             else
             {
-                InputService2 = new InputService2Impl();
+                InputServiceMove = new InputServiceMoveImpl();
             }
-
-            /*if (Application.isEditor)
-                InputService = new InputServiceImpl();
-            else
-                InputService = new InputServiceImpl();*/
+            
         }
     }
 }

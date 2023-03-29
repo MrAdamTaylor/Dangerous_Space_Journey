@@ -6,14 +6,14 @@ namespace Services.BorderService
     {
         public void BorderCheck(ref Vector3 vec)
         {
-            if (vec.z > Constants.TopBorder)
+            if (vec.y > Constants.TopBorder)
             {
-                vec.z = Constants.BottomBorder;
+                vec.y = Constants.BottomBorder;
             }
 
-            if (vec.z < Constants.BottomBorder)
+            if (vec.y < Constants.BottomBorder)
             {
-                vec.z = Constants.TopBorder;
+                vec.y = Constants.TopBorder;
             }
 
             if (vec.x > Constants.RightBorder)
