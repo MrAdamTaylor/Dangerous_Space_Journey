@@ -20,7 +20,8 @@ namespace Services.Input
         {
             foreach (GameObject bullet in bullets)
             {
-                bullet.SetActive(false);
+                var emissionModule = bullet.GetComponent<ParticleSystem>().emission;
+                emissionModule.enabled = false;
             }
         }
 
@@ -28,7 +29,9 @@ namespace Services.Input
         {
             foreach (GameObject bullet in bullets)
             {
-                bullet.SetActive(true);
+                var emissionModule = bullet.GetComponent<ParticleSystem>().emission;
+                emissionModule.enabled = true;
+                // bullet.SetActive(true);
             }
         }
 

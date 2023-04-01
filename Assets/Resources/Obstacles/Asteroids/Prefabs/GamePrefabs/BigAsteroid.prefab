@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8333169189050711262}
   - component: {fileID: 8333169189052004010}
   - component: {fileID: 8333169189053035454}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: test_asteroid_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,9 +91,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8333169189050664658}
   - component: {fileID: 8333169189054109844}
+  - component: {fileID: 8755665460507345535}
   - component: {fileID: 8333169189043936294}
   - component: {fileID: 8333169187807585658}
-  m_Layer: 0
+  - component: {fileID: 200708836822019429}
+  - component: {fileID: 8140723770074451994}
+  - component: {fileID: 1686459265635034604}
+  m_Layer: 8
   m_Name: BigAsteroid
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -109,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 8333169189051013922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 15, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 8.5, y: 8.5, z: 8.5}
   m_Children:
   - {fileID: 8333169189050693904}
   m_Father: {fileID: 0}
@@ -129,8 +133,21 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!114 &8755665460507345535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333169189051013922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d760e7ecdfe054489d41d113593924e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleExplosion: {fileID: 581710460952856993, guid: 1edb3cf2d3d618e48bd2a76eb9fa2a7a, type: 3}
 --- !u!114 &8333169189043936294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +174,48 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.85
   m_Center: {x: -0.05, y: 0, z: 0}
+--- !u!114 &200708836822019429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333169189051013922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12e78711dc2fa546a4de7939e84b147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 5
+  _asteroidHealth: {fileID: 8140723770074451994}
+--- !u!114 &8140723770074451994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333169189051013922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c3b132dd951bb45a9a47e0ba7c3e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 50
+--- !u!114 &1686459265635034604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333169189051013922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844bcc3f4e001054bbdc4c4bc3dd2848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxThrust: 500000
+  _asteroidRigidBody: {fileID: 8333169189054109844}
+  _player: {fileID: 657041344350597660, guid: e2cf1e703e55c604db4457cf35ab0749, type: 3}
 --- !u!1 &8333169189051028422
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +227,7 @@ GameObject:
   - component: {fileID: 8333169189050717828}
   - component: {fileID: 8333169189051992354}
   - component: {fileID: 8333169189052980788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: test_asteroid_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +308,7 @@ GameObject:
   - component: {fileID: 8333169189050719946}
   - component: {fileID: 8333169189052012568}
   - component: {fileID: 8333169189053016080}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: test_asteroid_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8333169189050693904}
   - component: {fileID: 8333169189068311892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: test_asteroid_LODGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
