@@ -14,6 +14,7 @@ namespace Infrastructure
         }
 
         public static IBorderChecker BorderService;
+        public static ISpecialEffectService SpecialEffectService;
 
         public static IInputServiceShoot InputServiceShoot { get; set; }
 
@@ -22,6 +23,12 @@ namespace Infrastructure
             RegisterInputService();
             RegisterBorderService();
             RegisterShootService();
+            RegisterSpecialEffectService();
+        }
+
+        private void RegisterSpecialEffectService()
+        {
+            SpecialEffectService = new SpecialEffectService();
         }
 
         private void RegisterShootService()
