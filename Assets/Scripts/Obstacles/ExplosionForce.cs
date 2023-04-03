@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class ExplosionForce : MonoBehaviour
 {
@@ -36,8 +34,13 @@ public class ExplosionForce : MonoBehaviour
     private bool isExplosion = false;
     private bool isSplintersSpawn = false;
 
-    private bool isCrashed = false;
-    
+    private bool isNoCrashed;
+
+    private void OnEnable()
+    {
+        isNoCrashed = true;
+    }
+
     private void Awake()
     {
         objectPool = GetComponent<RefreshingObjectPool>();
@@ -56,16 +59,16 @@ public class ExplosionForce : MonoBehaviour
     
     private void Update()
     {
-        CheckSelfAction();
         Hits = new Collider[_maxHits];
-        if (self.activeSelf == false && isCrashed == true)
+        if ((self.activeSelf == false) && isNoCrashed)
         {
             //isSplintersSpawn = false;
             PhysicsDebug.DrawDebug(StartPoint(), _radius, 5f);
             InstantiateExplosion();
             InstantiateSplinters();
-            StartCoroutine(SplinterCalls());
-            StopCoroutine(SplinterCalls());
+            
+            /*StartCoroutine(SplinterCalls());
+            StopCoroutine(SplinterCalls());*/
             //spawner.enabled = true;
             //spawner.Restart();
             //spawner.enabled = false;
@@ -79,18 +82,13 @@ public class ExplosionForce : MonoBehaviour
                     rigidbody.AddExplosionForce(ExplosiveForce, StartPoint(),_radius);
                 }
             }
+
+            
         }
         
         
     }
 
-    private void CheckSelfAction()
-    {
-        if (self.activeSelf == true)
-        {
-            isCrashed = true;
-        }
-    }
 
 
     IEnumerator SplinterCalls()
@@ -117,15 +115,12 @@ public class ExplosionForce : MonoBehaviour
 
     private void InstantiateSplinters()
     {
-        if (isSplintersSpawn == false)
+        for (int i = 0; i < _splinterCount; i++)
         {
-            for (int i = 0; i < _splinterCount; i++)
-            {
-                Instantiate(_splinter, _spawnPoint.ReturnPosition(), Quaternion.identity);
-                Debug.Log($"Позиция осколка {i} - {_splinter.transform.position}");
-            }
-            isSplintersSpawn = true;
+               Instantiate(_splinter, _spawnPoint.ReturnPosition(), Quaternion.identity);
+               Debug.Log($"Позиция осколка {i} - {_splinter.transform.position}");
         }
+        isNoCrashed = false;
     }
 
     IEnumerator SpawnSplinters()

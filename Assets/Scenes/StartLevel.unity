@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333169189051013922, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8333169189054109844, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
       propertyPath: m_Drag
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89d6e7dbf7d3d64c81218cb84c62f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroidPrefab: {fileID: 8144862218432774803, guid: 4cb7dea07dcc3ba4c8a77831f3c3f264, type: 3}
+  _asteroidPrefab: {fileID: 8333169189051013922, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
   poolSize: 10
   _spawnTimer: 3
   _spawnPoint: {fileID: 1962767387}
@@ -509,10 +509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d256e5c004b1349896157f67a4e137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minYRange: 73
-  maxYRange: 77
-  minXRange: 105
-  maxXRange: 110
+  minYRange: 50
+  maxYRange: 50
+  minXRange: 90
+  maxXRange: 90
 --- !u!1 &1989494245
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,5 +830,7 @@ PrefabInstance:
       propertyPath: _maxThrust
       value: 400000
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8144862218548834054, guid: 4cb7dea07dcc3ba4c8a77831f3c3f264, type: 3}
+    - {fileID: 8005276819545440815, guid: 4cb7dea07dcc3ba4c8a77831f3c3f264, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4cb7dea07dcc3ba4c8a77831f3c3f264, type: 3}
