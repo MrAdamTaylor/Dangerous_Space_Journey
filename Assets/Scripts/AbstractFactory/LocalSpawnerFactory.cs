@@ -1,3 +1,4 @@
+using Infrastructure;
 using Services.AssertService;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ namespace AbstractFactory
 
         private IAsserts _factoryAssert; 
         
-        public LocalSpawnerFactory(IAsserts _assert)
+        public LocalSpawnerFactory(IAsserts asserts)
         {
-            _factoryAssert = _assert;
+            _factoryAssert = asserts;
         }
 
         public IUnit SpawnUnit()
@@ -35,15 +36,16 @@ namespace AbstractFactory
             return unit;
         }
 
-        public GameObject SpawnSpecialEffect(string path)
+        public GameObject SpawnSpecialEffect(string path, Vector3 point)
         {
             /*var prefab = Resources.Load<GameObject>(path);
-            var rig = prefab.AddComponent<Rigidbody>();
-            return GameObject.Instantiate(prefab);*/
+            return GameObject.Instantiate(prefab, point, Quaternion.identity);*/
+            return _factoryAssert.Instantiate(path,point);
+        }
 
-            GameObject prefab = _factoryAssert.Instantiate(path);
-            var rig = prefab.AddComponent<Rigidbody>();
-            return prefab;
+        public GameObject SpawnBonus(string path, Vector3 place)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

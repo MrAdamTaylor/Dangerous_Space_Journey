@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class FactorySpawner : MonoBehaviour
 {
-    private IAsserts _asserts;
+    /*private IAsserts _asserts;
     private ISpawnerFactory _factory;
     private const string _myObject = "Obstacles/Asteroids/Prefabs/Missile";
 
@@ -33,7 +33,7 @@ public class FactorySpawner : MonoBehaviour
             SetModeNetwork();
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        /*if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             _factory.SpawnUnit();
         }
@@ -46,7 +46,7 @@ public class FactorySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             _factory.SpawnPlayer();
-        }
+        }#1#
 
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
@@ -66,5 +66,5 @@ public class FactorySpawner : MonoBehaviour
         _factory = new NetworkSpawnerFactory();
         
         Debug.Log("Network mode enabled");
-    }
+    }*/
 }

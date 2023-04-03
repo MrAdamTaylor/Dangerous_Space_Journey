@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Obstacles
 {
+    [RequireComponent(typeof(AsteroidHealth))]
     public class SplitersSpawn : MonoBehaviour
     {
         [SerializeField] private GameObject _splinter;

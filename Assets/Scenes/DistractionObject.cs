@@ -43,7 +43,7 @@ public class DistractionObject : MonoBehaviour
         {
             var part = Instantiate(_splinter, transform.position, Quaternion.identity);
             part.AddComponent<Rigidbody>();
-            Debug.Log($"Позиция осколка {i} - {_splinter.transform.position}");
+            //Debug.Log($"Позиция осколка {i} - {_splinter.transform.position}");
             flag = false;
         }
     }

@@ -12,6 +12,7 @@ public class CircleObjectPool : MonoBehaviour
     [SerializeField] private Spawner _spawnPoint;
 
     [HideInInspector] public GameObject[] pool;
+    private Queue<GameObject> qPool = new Queue<GameObject>();
 
     void Awake()
     {
@@ -34,16 +35,19 @@ public class CircleObjectPool : MonoBehaviour
         {
              pool[i] = Instantiate(_asteroidPrefab,_spawnPoint.ReturnPosition(), Quaternion.identity);
              pool[i].SetActive(false);
+             qPool.Enqueue(pool[i]);
         }
     }
 
     void EnableObjectPool()
     {
-        for (int i = 0; i < pool.Length-1; i++)
+        for (int i = 0; i < qPool.Count; i++)
         {
-            if (!pool[i].activeInHierarchy)
+            GameObject elementInOrder = qPool.Dequeue();
+            if (!elementInOrder.activeInHierarchy)
             {
-                pool[i].SetActive(true);
+                elementInOrder.SetActive(true);
+                qPool.Enqueue(elementInOrder);
                 return;
             }
         }

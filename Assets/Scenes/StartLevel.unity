@@ -509,10 +509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d256e5c004b1349896157f67a4e137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minYRange: 50
-  maxYRange: 50
-  minXRange: 90
-  maxXRange: 90
+  minYRange: 45
+  maxYRange: 45
+  minXRange: 80
+  maxXRange: 80
 --- !u!1 &1989494245
 GameObject:
   m_ObjectHideFlags: 0

@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98406001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.2116055, y: 11.073874, z: -0.8869184}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -353,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1604691869}
-  - component: {fileID: 1604691870}
+  - component: {fileID: 1604691871}
   m_Layer: 0
   m_Name: TestInstantiate2
   m_TagString: Untagged
@@ -376,7 +376,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1604691870
+--- !u!114 &1604691871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,10 +385,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1604691868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3181cfd39656f1340983f0e52729a392, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fbef9e8e9447ea4a99549086b21dc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distructableObject: {fileID: 1041803675373074}
+  _maxHits: 25
+  _radius: 10
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  ExplosiveForce: 100
 --- !u!114 &1683480186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +463,8 @@ GameObject:
   - component: {fileID: 33897397513012202}
   - component: {fileID: 23934306500807510}
   - component: {fileID: 1683480186}
+  - component: {fileID: 1041803675373077}
+  - component: {fileID: 1041803675373075}
   m_Layer: 0
   m_Name: Mine Sample 1
   m_TagString: Untagged
@@ -465,6 +472,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1041803675373075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041803675373074}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbef9e8e9447ea4a99549086b21dc68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHits: 25
+  _radius: 10
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  ExplosiveForce: 1000
+--- !u!114 &1041803675373077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041803675373074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c3b132dd951bb45a9a47e0ba7c3e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0
 --- !u!1 &1163411515101722
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,10 +29,15 @@ namespace AbstractFactory
             return unit;
         }
 
-        public GameObject SpawnSpecialEffect(string path)
+        public GameObject SpawnSpecialEffect(string path, Vector3 point)
         {
             var prefab = Resources.Load<GameObject>(path);
             return GameObject.Instantiate(prefab);
+        }
+
+        public GameObject SpawnBonus(string path, Vector3 place)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

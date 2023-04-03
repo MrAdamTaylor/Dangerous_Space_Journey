@@ -5,13 +5,15 @@ using UnityEngine;
 public class AsteroidHealth : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
-    private int health;
+    private int Health { get; set; } //TODO чекнуть работу
     private SplitersSpawn _splitersSpawner;
+    private ExplosionEffect _explosionEffect;
     private bool isSpliters;
+    private bool isExplosion;
     
     private void OnEnable()
     {
-        health = _maxHealth;
+        Health = _maxHealth;
     }
 
     private void Awake()
@@ -25,15 +27,30 @@ public class AsteroidHealth : MonoBehaviour
         {
             isSpliters = false;
         }
+
+        if (gameObject.GetComponent<ExplosionEffect>() != null)
+        {
+            _explosionEffect = gameObject.GetComponent<ExplosionEffect>();
+            isExplosion = true;
+        }
+        else
+        {
+            isSpliters = false;
+        }
     }
 
     public void DealDamage(int value)
     {
-        health -= value;
-        if (health <= 0)
+        Health -= value;
+        if (Health <= 0)
         {
             gameObject.SetActive(false);
-            if (isSpliters == true)
+            if (isExplosion)
+            {
+                _explosionEffect.ExplosionEffectCreate();
+            }
+
+            if (isSpliters)
             {
                 _splitersSpawner.DestroyOnSplinters();
             }

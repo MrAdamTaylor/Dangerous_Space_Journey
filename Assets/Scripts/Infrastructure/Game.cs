@@ -1,3 +1,5 @@
+using AbstractFactory;
+using Services.AssertService;
 using Services.BorderService;
 using Services.Input;
 using UnityEngine;
@@ -6,7 +8,6 @@ namespace Infrastructure
 {
     class Game
     {
-
         public static IInputServiceMove InputServiceMove
         {
             get;
@@ -15,6 +16,8 @@ namespace Infrastructure
 
         public static IBorderChecker BorderService;
         public static ISpecialEffectService SpecialEffectService;
+        public static IAsserts AssertsService { get; set; }
+        public static ISpawnerFactory Factory;
 
         public static IInputServiceShoot InputServiceShoot { get; set; }
 
@@ -23,7 +26,19 @@ namespace Infrastructure
             RegisterInputService();
             RegisterBorderService();
             RegisterShootService();
-            RegisterSpecialEffectService();
+            RegisterSpecialEffectService(); //TODO это надо будет убрать
+            RegisterAssertService();
+            RegisterAbstractFabric();
+        }
+
+        private void RegisterAbstractFabric()
+        {
+            Factory = new LocalSpawnerFactory(AssertsService);
+        }
+
+        private void RegisterAssertService()
+        {
+            AssertsService = new Asserts();
         }
 
         private void RegisterSpecialEffectService()
