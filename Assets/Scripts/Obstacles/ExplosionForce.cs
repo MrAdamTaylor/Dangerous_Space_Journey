@@ -20,8 +20,6 @@ public class ExplosionForce : MonoBehaviour
 
 
     private SplitersSpawn _splitersSpawn;
-    /*[SerializeField] private RefreshingObjectPool objectPool;*/
-    //[SerializeField] private Spawner _spawnPoint;
 
 
     private Collider[] Hits;

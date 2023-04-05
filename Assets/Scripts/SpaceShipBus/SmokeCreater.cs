@@ -3,37 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using AbstractFactory;
 using Infrastructure;
-using Services.AssertService;
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(AsteroidHealth))]
-public class ExplosionEffect : SpecialEffectCreater
+
+public class SmokeCreater : SpecialEffectCreater
 {
     [SerializeField] private string path;
     private bool isExplosion;
-    private ISpawnerFactory _explosionFactory;
+    private ISpawnerFactory _smokeFactory;
     private Vector3 _explosionPosition;
 
-    private void Start() 
+    private void Start()
     {
-        _explosionFactory = Game.Factory;
+        _smokeFactory = Game.Factory;
     }
-    
 
     private void OnEnable()
     {
         isExplosion = true;
     }
 
-    public void ExplosionEffectCreate()
-    {
-        EffectCreate();
-    }
-
     public override void EffectCreate()
     {
         _explosionPosition = transform.position;
-        _explosionFactory.SpawnSpecialEffect(path,_explosionPosition);
+        GameObject _smokeOfPart = _smokeFactory.SpawnSpecialEffect(path,_explosionPosition);
+        _smokeOfPart.transform.parent = gameObject.transform;
     }
 }

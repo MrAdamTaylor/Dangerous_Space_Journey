@@ -1,25 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AbstractFactory;
 using Infrastructure;
 using Services.Input;
 using UnityEngine;
 
-public class BulletSplash : MonoBehaviour
+public class BulletSplash : SpecialEffectCreater
 {
-    [SerializeField] private GameObject _particleExplosion;
+    [SerializeField] private string path;
+    private ISpawnerFactory _bulletFactory;
 
-    //private ISpecialEffectService _specialEffectService;
-
-    /*public void Awake()
+    public void Start()
     {
-        _specialEffectService = Game.SpecialEffectService;
-    }*/
+        _bulletFactory = Game.Factory;
+    }
+    
 
     private void OnParticleCollision(GameObject other)
     {
-        //GameObject special = _specialEffectService.InstantiateEffect(_particleExplosion, this.transform);
+        if (this.gameObject != null)
+        {
+            EffectCreate();
+        }
+    }
 
-        Instantiate(_particleExplosion, transform.position, transform.rotation);
+    public override void EffectCreate()
+    {
+        _bulletFactory.SpawnSpecialEffect(path, transform.position);
     }
 }

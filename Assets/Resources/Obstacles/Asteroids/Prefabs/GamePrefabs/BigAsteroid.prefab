@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d760e7ecdfe054489d41d113593924e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleExplosion: {fileID: 581710460952856993, guid: 1edb3cf2d3d618e48bd2a76eb9fa2a7a, type: 3}
+  path: Prefabs/BulletSplash
 --- !u!114 &8333169189043936294
 MonoBehaviour:
   m_ObjectHideFlags: 0

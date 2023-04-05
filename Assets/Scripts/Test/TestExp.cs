@@ -6,12 +6,14 @@ using UnityEngine;
 public class TestExp : MonoBehaviour
 {
     private Transform meeple;
-    private List<Transform> _childsTransforms = new List<Transform>();
+    public List<Transform> _childsTransforms = new List<Transform>();
     private int childCount;
+    private ExplosionEffect _explosionEffect;
+    private List<SmokeCreater> _smokeParts = new List<SmokeCreater>();
 
-    private void Start()
+    private void Awake()
     {
-        
+        _explosionEffect = gameObject.GetComponent<ExplosionEffect>();
     }
 
     private void Update()
@@ -22,20 +24,21 @@ public class TestExp : MonoBehaviour
             {
                 meeple = gameObject.transform.GetChild(i);
                 Debug.Log($"Чилдрен! {meeple.name}");
-                _childsTransforms.Add(meeple.transform); 
-                //meeple.gameObject.AddComponent<Rigidbody>();
-                //meeple.transform.parent = null;
+                _childsTransforms.Add(meeple.transform);
+                SmokeCreater _smoke = meeple.GetComponent<SmokeCreater>();
+                _smokeParts.Add(_smoke);
                 meeple = null;
+                _smoke = null;
             }
-            //this.gameObject.SetActive(false);
 
             for (int i = 0; i < _childsTransforms.Count; i++)
             {
                 _childsTransforms[i].transform.parent = null;
                 _childsTransforms[i].transform.gameObject.AddComponent<Rigidbody>();
+                _smokeParts[i].EffectCreate();
             }
+            _explosionEffect.ExplosionEffectCreate();
             this.gameObject.SetActive(false);
         }
-        Debug.Log($"Количество осколков {_childsTransforms.Count}");
     }
 }
