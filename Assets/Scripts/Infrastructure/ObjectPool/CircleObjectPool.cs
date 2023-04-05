@@ -13,6 +13,9 @@ public class CircleObjectPool : MonoBehaviour
 
     [HideInInspector] public GameObject[] pool;
     private Queue<GameObject> qPool = new Queue<GameObject>();
+    private Rigidbody _asteroidRigidBody;
+    [SerializeField]private Transform _player;
+    [SerializeField]private float _maxThrust;
 
     void Awake()
     {
@@ -47,6 +50,9 @@ public class CircleObjectPool : MonoBehaviour
             if (!elementInOrder.activeInHierarchy)
             {
                 elementInOrder.SetActive(true);
+                _asteroidRigidBody = elementInOrder.GetComponentInChildren<Rigidbody>();
+                elementInOrder.transform.LookAt(_player);
+                _asteroidRigidBody.AddForce(elementInOrder.transform.forward * Time.deltaTime * _maxThrust * 200f);
                 qPool.Enqueue(elementInOrder);
                 return;
             }

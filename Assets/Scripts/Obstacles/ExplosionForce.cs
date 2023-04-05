@@ -1,21 +1,13 @@
 using System;
 using System.Collections;
+using Obstacles;
 using UnityEngine;
 
 public class ExplosionForce : MonoBehaviour
 {
     
-    [Tooltip("Эффект взрыва!")]
-    [SerializeField] private GameObject _explosionEffect;
     [Tooltip("Ссылка на префаб астеройда!")]
     [SerializeField] private GameObject self;
-
-
-    [Header("Всё, что связанно с осколками")]
-    [Tooltip("Ссылка на префаб осколка!")]
-    [SerializeField] private GameObject _splinter;
-    [Tooltip("Количество осколков!")]
-    [SerializeField] private int _splinterCount;
 
     [Header("Позиции спавна осколков")]    
     [SerializeField] private int _maxHits = 25;
@@ -25,53 +17,33 @@ public class ExplosionForce : MonoBehaviour
     [SerializeField] private LayerMask _hitLayer;
     [Header("Сила взрыва")]
     [SerializeField] private float ExplosiveForce;
-    
-    [SerializeField] private RefreshingObjectPool objectPool;
-    [SerializeField] private Spawner _spawnPoint;
+
+
+    private SplitersSpawn _splitersSpawn;
+    /*[SerializeField] private RefreshingObjectPool objectPool;*/
+    //[SerializeField] private Spawner _spawnPoint;
 
 
     private Collider[] Hits;
-    private bool isExplosion = false;
-    private bool isSplintersSpawn = false;
-
-    private bool isNoCrashed;
-
-    private void OnEnable()
-    {
-        isNoCrashed = true;
-    }
 
     private void Awake()
     {
-        objectPool = GetComponent<RefreshingObjectPool>();
-        objectPool.enabled = false;
-        if (_spawnPoint.GetComponent<BorderSpawner>() != null)
-        {
-            _spawnPoint.GetComponent<BorderSpawner>();
-        }
-        else
-        {
-            _spawnPoint.GetComponent<SimpleSpawner>();
-        }
+        _splitersSpawn = self.GetComponent<SplitersSpawn>();
     }
 
-    
+
+    private void OnEnable()
+    {
+        _splitersSpawn.RecoveryObject();
+    }
+   
     
     private void Update()
     {
         Hits = new Collider[_maxHits];
-        if ((self.activeSelf == false) && isNoCrashed)
+        if ((self.activeSelf == false))
         {
-            //isSplintersSpawn = false;
             PhysicsDebug.DrawDebug(StartPoint(), _radius, 5f);
-            InstantiateExplosion();
-            InstantiateSplinters();
-            
-            /*StartCoroutine(SplinterCalls());
-            StopCoroutine(SplinterCalls());*/
-            //spawner.enabled = true;
-            //spawner.Restart();
-            //spawner.enabled = false;
             int hits = Physics.OverlapSphereNonAlloc(StartPoint(), _radius, Hits, _hitLayer);
 
             for (int i = 0; i < hits; i++)
@@ -83,27 +55,22 @@ public class ExplosionForce : MonoBehaviour
                 }
             }
 
-            
+            StartCoroutine(disableObject());
+            //StopCoroutine(disableObject());
+            // this.enabled = false;
+
         }
         
         
     }
 
-
-
-    IEnumerator SplinterCalls()
-    {
-        yield return new WaitForSeconds(0.05f);
-        //InstantiateSplinters();
-    }
-
-    private void InstantiateExplosion()
-    {
-        if (isExplosion == false)
-        {
-            Instantiate(_explosionEffect, StartPoint() + new Vector3(0,0,-10), Quaternion.identity);
-            isExplosion = true;
-        }
+    private IEnumerator disableObject()
+    { 
+        //this.enabled = false;
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Ка бум!");
+        StopCoroutine(disableObject());
+        this.gameObject.SetActive(false);
     }
 
     public Vector3 StartPoint()
@@ -111,24 +78,4 @@ public class ExplosionForce : MonoBehaviour
         return new Vector3(self.transform.position.x, self.transform.position.y, self.transform.position.z);
     }
 
-    
-
-    private void InstantiateSplinters()
-    {
-        for (int i = 0; i < _splinterCount; i++)
-        {
-               Instantiate(_splinter, _spawnPoint.ReturnPosition(), Quaternion.identity);
-               Debug.Log($"Позиция осколка {i} - {_splinter.transform.position}");
-        }
-        isNoCrashed = false;
-    }
-
-    IEnumerator SpawnSplinters()
-    {
-        for (int j = 0; j < _splinterCount; j++)
-        {
-            Instantiate(_splinter, _spawnPoint.ReturnPosition(), Quaternion.identity);
-            yield return new WaitForSeconds(1f);
-        }
-    }
 }

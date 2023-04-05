@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,12 +12,19 @@ public class AsteroidMoveToPlayer : MonoBehaviour
 
 
 
-    void Start()
+
+    void OnEnable()
     {
         transform.LookAt(_player);
-        
-        
+    }
+
+    private void Start()
+    {
         _asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
     }
 
+    private void Update()
+    {
+        _asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
+    }
 }

@@ -96,9 +96,10 @@ GameObject:
   - component: {fileID: 8333169187807585658}
   - component: {fileID: 200708836822019429}
   - component: {fileID: 8140723770074451994}
-  - component: {fileID: 1686459265635034604}
   - component: {fileID: 3745508768373956235}
   - component: {fileID: -8205788338646844871}
+  - component: {fileID: 4479656001732342287}
+  - component: {fileID: 7952018333867772088}
   m_Layer: 8
   m_Name: BigAsteroid
   m_TagString: Enemy
@@ -203,21 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 50
---- !u!114 &1686459265635034604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8333169189051013922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844bcc3f4e001054bbdc4c4bc3dd2848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxThrust: 500000
-  _asteroidRigidBody: {fileID: 8333169189054109844}
-  _player: {fileID: 657041344350597660, guid: e2cf1e703e55c604db4457cf35ab0749, type: 3}
 --- !u!114 &3745508768373956235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +231,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: Prefabs/ExplosionEffect
+--- !u!114 &4479656001732342287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333169189051013922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 844bcc3f4e001054bbdc4c4bc3dd2848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxThrust: 15000
+  _asteroidRigidBody: {fileID: 8333169189054109844}
+  _player: {fileID: 657041344350597660, guid: e2cf1e703e55c604db4457cf35ab0749, type: 3}
+--- !u!114 &7952018333867772088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8333169189051013922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a7f0073c47e36419dcd98e2ec2f5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8333169189051028422
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,10 +25,22 @@ public class AddSplittersForce : MonoBehaviour
 
     public void Update()
     {
-        PhysicsDebug.DrawDebug(CrashedPosition(), _radius, 5f);
-        /*if (Input.GetKeyDown(KeyCode.S))
+        //PhysicsDebug.DrawDebug(CrashedPosition(), _radius, 5f);
+        if (Input.GetKeyDown(KeyCode.S))
         {
             AddExplosionRadius();
+        }
+        /*Hits = new Collider[_maxHits];
+        int hits = Physics.OverlapSphereNonAlloc(CrashedPosition(), _radius, Hits, _hitLayer);
+        PhysicsDebug.DrawDebug(CrashedPosition(), _radius, 5f);
+        for (int i = 0; i < hits; i++)
+        {
+            if (Hits[i].TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
+            {
+                Debug.Log($"Я получил! от {Hits[i]}");
+                float distance = Vector3.Distance(CrashedPosition(), Hits[i].transform.position);
+                rigidbody.AddExplosionForce(ExplosiveForce, CrashedPosition(), _radius);
+            }
         }*/
     }
 
@@ -53,6 +65,6 @@ public class AddSplittersForce : MonoBehaviour
 
     private Vector3 CrashedPosition()
     {
-        return new Vector3(transform.position.x, transform.position.y, transform.position.y);
+        return new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.y);
     }
 }
