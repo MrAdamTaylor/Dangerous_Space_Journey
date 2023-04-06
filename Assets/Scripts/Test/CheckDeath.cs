@@ -16,11 +16,17 @@ public class CheckDeath : MonoBehaviour
 
     private void TriggerExit(Collider obj)
     {
-        _death.Die();
+        if (obj.gameObject.tag != "Player")
+        {
+            _death.Safety();
+        }
     }
 
     private void TriggerEnter(Collider obj)
     {
-        _death.Safety();
+        if (obj.gameObject.tag != "Player")
+        {
+            _death.Die();
+        }
     }
 }

@@ -8,12 +8,12 @@ using UnityEngine;
 
 public class SmokeCreater : SpecialEffectCreater
 {
-    [SerializeField] private string path;
+    [SerializeField] private string path = "Prefabs/Smoke";
     private bool isExplosion;
     private ISpawnerFactory _smokeFactory;
     private Vector3 _explosionPosition;
 
-    private void Start()
+    private void Awake()
     {
         _smokeFactory = Game.Factory;
     }

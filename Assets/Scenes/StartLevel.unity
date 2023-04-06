@@ -513,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1962767385
 Transform:
   m_ObjectHideFlags: 0
@@ -10783,6 +10783,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AsteroidObject
       objectReference: {fileID: 0}
+    - target: {fileID: 2971053057171587566, guid: 18af440df55ef484da8d3ce06fa0fcfa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18af440df55ef484da8d3ce06fa0fcfa, type: 3}
 --- !u!4 &2977502094324149912
@@ -10833,6 +10837,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1448279316, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448279318, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448279318, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Size.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448279318, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448279318, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Center.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488336209, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488336211, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488336211, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488336211, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Size.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1488336211, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1483293320941589728, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: m_Size.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2506759088864848135, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10877,12 +10925,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2990984647987770300, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: _thrust
+      value: 10000
+      objectReference: {fileID: 0}
     - target: {fileID: 2990984647987770301, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
       propertyPath: m_Name
       value: StarSparrow20
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6074299105082711042, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+    - target: {fileID: 3661250374162101208, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
+      propertyPath: ExplosiveForce
+      value: 150
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 691e3d9882ef36e49a047dec8c889e3e, type: 3}
 --- !u!1 &3818698230654437252
 GameObject:

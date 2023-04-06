@@ -70,6 +70,14 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 8224526590340779430, guid: 3fb7bff92e6e9ec43a6b313a57ecf143, type: 3}
+    - target: {fileID: 8333169187807585658, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333169187807585658, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
+      propertyPath: m_Center.x
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8333169189043936294, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
       propertyPath: m_Enabled
       value: 0
