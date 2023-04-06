@@ -1,28 +1,30 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ApartUnstaker : MonoBehaviour
+namespace SpaceShipBus
 {
-
-    public List<Transform> _childsTransforms = new List<Transform>();
-    private int childCount;
-
-    private void GetSpliters()
+    public class ApartUnstaker : MonoBehaviour
     {
-        for (int i = 0; i < gameObject.transform.childCount; i++)
+
+        [HideInInspector] public List<Transform> _childsTransforms = new List<Transform>();
+        private int childCount;
+
+        public void GetSpliters()
         {
-            Transform spliter = gameObject.transform.GetChild(i);
-            _childsTransforms.Add(spliter.transform);
-            spliter = null;
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                Transform spliter = gameObject.transform.GetChild(i);
+                _childsTransforms.Add(spliter.transform);
+                spliter = null;
+            }
         }
-    }
 
-    private void Unstack()
-    {
-        for (int i = 0; i < _childsTransforms.Count; i++)
+        public void Unstack()
         {
-            _childsTransforms[i].transform.parent = null;
+            for (int i = 0; i < _childsTransforms.Count; i++)
+            {
+                _childsTransforms[i].transform.parent = null;
+            }
         }
     }
 }

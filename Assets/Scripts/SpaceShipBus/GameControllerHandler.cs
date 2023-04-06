@@ -1,6 +1,9 @@
 using System;
 
-public class GameControllerHandler : EventArgs
+namespace SpaceShipBus
 {
+    public class GameControllerHandler : EventArgs
+    {
     
+    }
 }

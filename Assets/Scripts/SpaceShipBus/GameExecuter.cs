@@ -1,21 +1,22 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameExecuter : MonoBehaviour
+namespace SpaceShipBus
 {
-    private void Update()
+    public class GameExecuter : MonoBehaviour
     {
-        GlobalBus.Sync.Publish(this, new GameControllerHandler());
+        private void Update()
+        {
+            GlobalBus.Sync.Publish(this, new GameControllerHandler());
+        }
+
+        //TODO это ещё сделаю :)
+        IEnumerator GameHandlerLauncher()
+        {
+            yield return new WaitForSeconds(0.05f);
+
+        }
+
+
     }
-
-    //TODO это ещё сделаю :)
-    IEnumerator GameHandlerLauncher()
-    {
-        yield return new WaitForSeconds(0.05f);
-
-    }
-
-
 }

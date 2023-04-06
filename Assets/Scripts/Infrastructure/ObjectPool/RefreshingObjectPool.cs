@@ -6,7 +6,7 @@ public class RefreshingObjectPool : MonoBehaviour
 {
     [SerializeField] private GameObject _asteroidPrefab;
     [SerializeField] public int poolSize = 5;
-    [SerializeField] private float _spawnTimer = 1f;
+    //[SerializeField] private float _spawnTimer = 1f;
     [SerializeField] private Spawner _spawnPoint;
 
     [HideInInspector] public GameObject[] pool;
