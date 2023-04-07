@@ -647,6 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3930599069846489982}
   - component: {fileID: 3930599069846489981}
+  - component: {fileID: 1344232228467628009}
   m_Layer: 5
   m_Name: End_Game_Menu
   m_TagString: Untagged
@@ -683,6 +684,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3930599069846489983}
   m_CullTransparentMesh: 1
+--- !u!114 &1344232228467628009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3930599069846489983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92750e66e1284029b5c7288ca67cd045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CloseButton: {fileID: 2110065310552258419}
 --- !u!1 &3930599070001524816
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3930599070001524828
@@ -1117,10 +1131,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8351944089684504080, guid: 664641315e01fc241ba8462eec09c19a, type: 3}
       propertyPath: m_Name
-      value: Exit_Button
+      value: Close_Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 664641315e01fc241ba8462eec09c19a, type: 3}
+--- !u!114 &2110065310552258419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3290758433514417583, guid: 664641315e01fc241ba8462eec09c19a, type: 3}
+  m_PrefabInstance: {fileID: 3522776312461138652}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4042658219506364257 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 646550628928419261, guid: 664641315e01fc241ba8462eec09c19a, type: 3}
