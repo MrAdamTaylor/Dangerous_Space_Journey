@@ -18,7 +18,7 @@ namespace UI.Services.Windows
                 case WindowID.Unknown:
                     break;
                 case WindowID.EndGame:
-                    _iuiFactory.CreateEndGameWindow();
+                   // _iuiFactory.CreateEndGameWindow();
                     break;
             }
         }

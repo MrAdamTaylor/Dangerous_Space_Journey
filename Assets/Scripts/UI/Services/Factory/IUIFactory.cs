@@ -7,7 +7,7 @@
 {
     public interface IUIFactory
     {
-        void CreateEndGameWindow();
+        //void CreateEndGameWindow();
         void CreateUIRoot();
     }
 
@@ -24,10 +24,10 @@
         }
 
 
-        public void CreateEndGameWindow()
+        /*public void CreateEndGameWindow()
         {
             var config = _staticData.ForWindow(WindowID.EndGame);
-        }
+        }*/
 
         public void CreateUIRoot()
         {

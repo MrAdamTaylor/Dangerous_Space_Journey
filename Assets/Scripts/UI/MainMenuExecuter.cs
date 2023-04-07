@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class MainMenu : MonoBehaviour
+    public class MainMenuExecuter : MonoBehaviour
     {
         [SerializeField] private Death _death;
 

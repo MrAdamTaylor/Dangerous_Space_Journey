@@ -11,7 +11,7 @@ namespace Services.StaticDataService
         private Dictionary<WindowID, WindowConfig> _windowConfigs;
         private const string StaticDataWindowsPath = "";
 
-        public WindowConfig ForWindow(WindowID windowID)
+        /*public WindowConfig ForWindow(WindowID windowID)
         {
             _windowConfigs = Resources.Load<WindowStaticData>(StaticDataWindowsPath)
                 .Configs
@@ -19,6 +19,6 @@ namespace Services.StaticDataService
             
             //TODO доделать позже
             return WindowConfig;
-        }
+        }*/
     }
 }

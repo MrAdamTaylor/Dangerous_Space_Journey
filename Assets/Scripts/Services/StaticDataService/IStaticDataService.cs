@@ -5,6 +5,6 @@ namespace Services.StaticDataService
 {
     public interface IStaticDataService
     {
-        WindowConfig ForWindow(WindowID wind);
+       // WindowConfig ForWindow(WindowID wind);
     }
 }
