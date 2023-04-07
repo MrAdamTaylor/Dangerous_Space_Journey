@@ -15,7 +15,6 @@ namespace Infrastructure
         }
 
         public static IBorderChecker BorderService;
-        public static ISpecialEffectService SpecialEffectService;
         public static IAsserts AssertsService { get; set; }
         public static ISpawnerFactory Factory;
 
@@ -26,7 +25,6 @@ namespace Infrastructure
             RegisterInputService();
             RegisterBorderService();
             RegisterShootService();
-            RegisterSpecialEffectService(); //TODO это надо будет убрать
             RegisterAssertService();
             RegisterAbstractFabric();
         }
@@ -39,11 +37,6 @@ namespace Infrastructure
         private void RegisterAssertService()
         {
             AssertsService = new Asserts();
-        }
-
-        private void RegisterSpecialEffectService()
-        {
-            SpecialEffectService = new SpecialEffectService();
         }
 
         private void RegisterShootService()

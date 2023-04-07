@@ -1,5 +1,5 @@
-using System;
 using SpaceShipBus;
+using UniRx;
 using UnityEngine;
 
 public class Death : MonoBehaviour
@@ -16,13 +16,14 @@ public class Death : MonoBehaviour
     private bool isUnstackRigidBody;
     private bool isSpecialEffect;
     private bool isBoxCollider;
-    private bool isDie = true;
     private bool isExplosion;
 
     private void Awake()
     {
         CheckAppartUnstacker();
     }
+
+    public BoolReactiveProperty IsDead { get; } = new BoolReactiveProperty();
 
     private void CheckAppartUnstacker()
     {
@@ -109,7 +110,7 @@ public class Death : MonoBehaviour
     {
         Debug.Log("Смерть!");
         
-        if (isUnstack && isDie)
+        if (isUnstack && !IsDead.Value)
         {
             _appartUnstacker.GetSpliters();
             _appartUnstacker.Unstack();
@@ -124,7 +125,7 @@ public class Death : MonoBehaviour
                 _unstakRigidBodyAdd.AddRigidBody();
             }
 
-            isDie = false;
+            IsDead.Value = true;
             _explosionEffect.ExplosionEffectCreate();
             this.gameObject.SetActive(false);
 
