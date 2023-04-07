@@ -50,7 +50,7 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 256
-  ExplosiveForce: 70
+  ExplosiveForce: 100
 --- !u!1001 &6529674352305469270
 PrefabInstance:
   m_ObjectHideFlags: 0
