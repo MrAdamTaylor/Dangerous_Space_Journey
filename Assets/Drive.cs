@@ -13,15 +13,26 @@ public class Drive : MonoBehaviour
     float tspeed = 2f;
     float rspeed = 0.1f;
 
+
+    private Quaternion _quaternion;
+    private Quaternion _writeQuaternion;
+    private Quaternion _tempQuaternion;
+    private float _myAngle;
+
+    [SerializeField]private float angleX;
+    [SerializeField]private float angleY;
+    [SerializeField]private float angleZ;
+
     void Start()
     {
+        _writeQuaternion = transform.rotation;
 
     }
 
     void AutoPilot()
     {
         StartCoroutine(RotateToPlayer());
-        this.transform.position += -this.transform.forward * tspeed * Time.deltaTime;
+        //this.transform.position += -this.transform.forward * tspeed * Time.deltaTime;
     }
 
     IEnumerator RotateToPlayer()
@@ -49,7 +60,28 @@ public class Drive : MonoBehaviour
             clockwise = -1;
 
         if ((angle * Mathf.Rad2Deg) > 10) ;
-        //this.transform.Rotate(0, angle * Mathf.Rad2Deg * clockwise * rspeed, 0);
+        var myAngle_sim = angle * Mathf.Rad2Deg;
+        var myAngle_full = myAngle_sim * clockwise;
+        this.transform.Rotate(0, myAngle_full * rspeed, 0);
+        //this.transform.rotation = Quaternion.Euler( 0, 0,angle * Mathf.Rad2Deg * clockwise * rspeed);
+
+        /*var mAngle1 = angle * clockwise * rspeed;
+        var mAngle2 = angle * Mathf.Rad2Deg * clockwise * rspeed;
+        this.transform.rotation = Quaternion.Euler(mAngle2, angleY, angleZ);*/
+
+        _writeQuaternion = this.transform.rotation;
+        var x = _writeQuaternion.x;
+        var y = _writeQuaternion.y;
+        var z = _writeQuaternion.z;
+        var xE = _writeQuaternion.eulerAngles.x;
+        var yE = _writeQuaternion.eulerAngles.y;
+        var zE = _writeQuaternion.eulerAngles.z;
+        Debug.Log($" transform rotation  ({x} {y} {z}); transfrom euler ({xE} {yE} {zE});  MainAngle = {myAngle_full}; MainRadian = {angle}");
+        /*this.transform.rotation =
+            Quaternion.Euler(_writeQuaternion.eulerAngles.x  , _writeQuaternion.eulerAngles.y , _writeQuaternion.eulerAngles.z + myAngle_full );
+        
+        _myAngle = myAngle_full;
+        _quaternion = this.transform.rotation;*/
 
     }
 
@@ -98,7 +130,7 @@ public class Drive : MonoBehaviour
 
         // Rotate around our y-axis
         transform.Rotate(0, 0, -rotation);*/
-
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CalculateDistance();
