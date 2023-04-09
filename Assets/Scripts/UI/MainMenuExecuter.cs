@@ -29,7 +29,7 @@ namespace UI
                 .Subscribe(v =>
                 {
                     gameObject.SetActive(v);
-                    Debug.Log("Hello, world!");
+                   // Debug.Log("Hello, world!");
                 })
                 .AddTo(this);
             
