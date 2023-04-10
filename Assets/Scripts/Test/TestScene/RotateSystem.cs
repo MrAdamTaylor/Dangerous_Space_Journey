@@ -1,20 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-//[ExecuteInEditMode]
-public class QuaternionTest : MonoBehaviour
+public class RotateSystem : MonoBehaviour
 {
     [SerializeField] private GameObject Rect;
     [SerializeField] private GameObject RectTarget;
-    [SerializeField] private float AxisY;
-    [SerializeField] private Vector3 result;
-
-    [SerializeField] private float Axis_x;
-    [SerializeField] private float Axis_z;
-    
+    [SerializeField] private float _speed = 1f; 
+    //[SerializeField] private Vector3 result;
     
     private Vector3 Ray1;
     private Vector3 Ray2;
@@ -22,29 +15,27 @@ public class QuaternionTest : MonoBehaviour
     private float _angle;
     private float _angleDegrees;
     private int _clockwise;
+    private Quaternion current;
+    private float _xValue = 90;
+    private const float _yValue = 270;
+    private const float _zValue = 90;
 
-    // Start is called before the first frame update
-
-    public void Awake()
-    {
-        Rotate();
-    }
+    private Coroutine _lerpCoroutine;
 
     void Start()
     {
-        CalculateLines(Rect, RectTarget);
-        _dot = DotProduct(Ray1, Ray2);
-        _angle = AngleBetween(_dot, Ray1, Ray2);
-        _angleDegrees = AngleInDegrees(_angle);
-        Cross(Ray1, Ray2);
-        _clockwise = GetClockWise();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //result = Vector3.forward * 10;
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            RotateObjectSystem();
+        }
     }
+    
     
     private void RotateObjectSystem()
     {
@@ -57,26 +48,34 @@ public class QuaternionTest : MonoBehaviour
         RotateObject(_angleDegrees, _clockwise);
     }
 
-    private void Rotate()
-    {
-        var temp = Quaternion.Euler(Axis_x, AxisY, Axis_z) * result;
-        Rect.transform.eulerAngles = temp;
-        Debug.DrawRay(Rect.transform.position,Rect.transform.forward*25,Color.red, 1);
-    }
-
-    /*private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(this.transform.position, this.transform.forward);
-    }*/
-    
-    
     private void RotateObject(float angleDegrees, int clockwise)
     {
         if (_angleDegrees > 10f)
         {
-            this.transform.Rotate(0, _angleDegrees * _clockwise, 0);
+            var current = Quaternion.Euler(_xValue, _yValue, _zValue);
+            Vector3 resultDestination = new Vector3(_xValue - _angleDegrees, _yValue, _zValue);
+            var temp = Quaternion.Euler(0, 0, 0) * resultDestination;
+            //Rect.transform.eulerAngles = temp;
+            var smoth = Quaternion.Euler(_xValue - _angleDegrees, _yValue, _zValue);
+            if (_lerpCoroutine != null)
+            {
+                StopCoroutine(_lerpCoroutine);
+            }
+            _lerpCoroutine = StartCoroutine(SmothRotate(current,smoth,_speed));
+            _xValue = _xValue - _angleDegrees;
         }
+    }
+
+    private IEnumerator SmothRotate(Quaternion quaternion, Quaternion temp, float speed)
+    {
+        float time = 0;
+        while (time < 1)
+        {
+            yield return new WaitForSeconds(0.1f);
+            Rect.transform.rotation = Quaternion.Slerp(quaternion, temp, time);
+            time += Time.deltaTime * speed;
+        }
+        Debug.Log("Остановка!");
     }
 
     private void CalculateLines(GameObject obj1, GameObject obj2)
@@ -87,8 +86,8 @@ public class QuaternionTest : MonoBehaviour
                   $"Obj1 vectorForward: {selfForward}, " +
                   $"Obj2: {RectTarget.transform.position} " +
                   $"Direction between: {targedDirection}");
-        //Debug.DrawRay(self.transform.position, selfForward * 15, Color.green, 10);
-        //Debug.DrawRay(self.transform.position, targedDirection, Color.red, 10);
+        Debug.DrawRay(Rect.transform.position, selfForward * 15, Color.green, 10);
+        Debug.DrawRay(Rect.transform.position, targedDirection, Color.red, 10);
 
         Ray1 = selfForward;
         Ray2 = targedDirection;
@@ -129,10 +128,10 @@ public class QuaternionTest : MonoBehaviour
 
     private int GetClockWise()
     {
-        int clockwise = 1;
+        int clockwise = -1;
         if (Cross(Ray1, Ray2).z > 0)
         {
-            clockwise = -1; 
+            clockwise = 1; 
         }
         Debug.Log($"(this.name{this.name}): Direction {clockwise}");
         return clockwise;
