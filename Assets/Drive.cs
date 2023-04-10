@@ -56,13 +56,17 @@ public class Drive : MonoBehaviour
         Debug.Log("Unity Angle: " + Vector3.Angle(tankForward, fuelDirection));
 
         int clockwise = 1;
-        if (Cross(tankForward, fuelDirection).z < 0)
+        if (Cross(tankForward, fuelDirection).y < 0)
             clockwise = -1;
 
         if ((angle * Mathf.Rad2Deg) > 10) ;
-        var myAngle_sim = angle * Mathf.Rad2Deg;
-        var myAngle_full = myAngle_sim * clockwise;
-        this.transform.Rotate(0, myAngle_full * rspeed, 0);
+        {
+            var myAngle_sim = angle * Mathf.Rad2Deg;
+            var myAngle_full = myAngle_sim * clockwise;
+            this.transform.Rotate(0, myAngle_full * rspeed, 0);
+        }
+
+        
         //this.transform.rotation = Quaternion.Euler( 0, 0,angle * Mathf.Rad2Deg * clockwise * rspeed);
 
         /*var mAngle1 = angle * clockwise * rspeed;
@@ -76,7 +80,7 @@ public class Drive : MonoBehaviour
         var xE = _writeQuaternion.eulerAngles.x;
         var yE = _writeQuaternion.eulerAngles.y;
         var zE = _writeQuaternion.eulerAngles.z;
-        Debug.Log($" transform rotation  ({x} {y} {z}); transfrom euler ({xE} {yE} {zE});  MainAngle = {myAngle_full}; MainRadian = {angle}");
+        //Debug.Log($" transform rotation  ({x} {y} {z}); transfrom euler ({xE} {yE} {zE});  MainAngle = {myAngle_full}; MainRadian = {angle}");
         /*this.transform.rotation =
             Quaternion.Euler(_writeQuaternion.eulerAngles.x  , _writeQuaternion.eulerAngles.y , _writeQuaternion.eulerAngles.z + myAngle_full );
         
