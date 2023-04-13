@@ -1,25 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Enemy.FSM.States;
 using UnityEngine;
 
-public class MovementSM : StateMachine
+namespace Enemy.FSM.States
 {
-    [HideInInspector] public IdleState _idleState;
-    [HideInInspector] public MoveState _movingState;
-
-     public Rigidbody _rigidbody;
-    [SerializeField] public float _speed;
-
-    private void Awake()
+    public class MovementSM : StateMachine
     {
-        _idleState = new IdleState(this);
-        _movingState = new MoveState(this);
-    }
+        [HideInInspector] public IdleState _idleState;
+        [HideInInspector] public MoveState _movingState;
 
-    protected override BaseState GetInitialState()
-    {
-        return _idleState;
+        public Rigidbody _rigidbody;
+        [SerializeField] public float _speed;
+
+        private void Awake()
+        {
+            _idleState = new IdleState(this);
+            _movingState = new MoveState(this);
+        }
+
+        protected override BaseState GetInitialState()
+        {
+            return _idleState;
+        }
     }
 }

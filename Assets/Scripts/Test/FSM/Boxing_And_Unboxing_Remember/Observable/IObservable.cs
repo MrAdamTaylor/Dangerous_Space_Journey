@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SomeState : MonoBehaviour
+public interface IObservable
 {
+    event Action<object> OnChanged;
+    
     
 }
