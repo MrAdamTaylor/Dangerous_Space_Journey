@@ -138,12 +138,13 @@ public class LerpManager : MonoBehaviour
             while (Rect.transform.rotation.eulerAngles.y < 180)
             {
                 Rect.transform.rotation = Quaternion.RotateTowards(Quaternion.identity, Quaternion.Euler(0, 180, 0), step);
-                step += LerpSpeed * Time.deltaTime;
+                 step += LerpSpeed * Time.deltaTime;
                 yield return null;
             }
 
             while (Rect.transform.rotation.eulerAngles.y > 0)
             {
+                Debug.Log(">0");
                 Rect.transform.rotation = Quaternion.RotateTowards(Quaternion.Euler(0, 180, 0), Quaternion.identity, step);
                 step += LerpSpeed * Time.deltaTime;
                 yield return null;

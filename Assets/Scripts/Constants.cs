@@ -18,4 +18,13 @@ public static class Constants
     
     #endregion
 
+
+    #region Константы для Quaternion
+
+        public const float _yValue = 270;
+        public const float _zValue = 90;
+    
+
+    #endregion
+    
 }
