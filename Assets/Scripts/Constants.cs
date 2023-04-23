@@ -7,6 +7,9 @@ public static class Constants
     #region Константы для ограничения движения
         public const float PositiveEpsilonRange = 0.001f;
         public const float NegativeEpsilonRange = -0.001f;
+
+        //Граница для угла
+        public const float AngleEpsilon = 1f;
     #endregion
 
     #region Константы для границ карты
@@ -23,8 +26,10 @@ public static class Constants
 
         public const float _yValue = 270;
         public const float _zValue = 90;
-    
 
-    #endregion
-    
+        public const float _negativeYValue = 90;
+        public const float _negativeZValue = 270;
+        
+        #endregion
+
 }

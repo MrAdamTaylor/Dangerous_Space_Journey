@@ -549,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rect: {fileID: 1001825585}
   RectTarget: {fileID: 2091903537}
-  _speed: 15
+  _speed: 30
   LerpSpeed: 70
   _xValue: 90
 --- !u!1001 &1010237118
@@ -699,11 +699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4872461970388222, guid: 9049f178339a1ec49b8d10542e9d6787, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30.1
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4872461970388222, guid: 9049f178339a1ec49b8d10542e9d6787, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4872461970388222, guid: 9049f178339a1ec49b8d10542e9d6787, type: 3}
       propertyPath: m_LocalPosition.z
@@ -764,7 +764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -772,19 +772,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.5416752
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: -0.5416752
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.45451948
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.45451948
       objectReference: {fileID: 0}
     - target: {fileID: 4539776123664966, guid: e47736c9193f7dd4d8dc3eef50ba64c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1169,10 +1169,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1819815242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50625ab9a658c3a4685000d78208d065, type: 3}
+  m_Script: {fileID: 11500000, guid: b9b57a2de6349d74286d5b0b968517bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1807473945}
+  _rect: {fileID: 1819815242}
+  _quaternion: {x: 190, y: 270, z: 90}
 --- !u!1 &1950484062
 GameObject:
   m_ObjectHideFlags: 0

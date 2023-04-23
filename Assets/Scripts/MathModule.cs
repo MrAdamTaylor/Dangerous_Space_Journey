@@ -4,6 +4,50 @@ namespace DefaultNamespace
 {
     public static class MathModule
     {
+        private static int[] _bufferClockwise = new int[2]; 
+        
+        
+        public static void AddClockwiseInBuffer(int value)
+        {
+            if (_bufferClockwise[0] != 0)
+            {
+                if (_bufferClockwise[1] != 0)
+                {
+                    int temp = _bufferClockwise[0];
+                    _bufferClockwise[0] = value;
+                    _bufferClockwise[1] = temp;
+                }
+                else
+                {
+                    _bufferClockwise[1] = _bufferClockwise[0];
+                    _bufferClockwise[0] = value;
+                }
+            }
+            else
+            {
+                _bufferClockwise[0] = value;
+            }
+            Debug.Log($"Buffer: CurrentValue: {_bufferClockwise[0]} PastValue: {_bufferClockwise[1]}");
+        }
+
+        public static bool CompareBuffValue()
+        {
+            if (_bufferClockwise[1] != 0)
+            {
+                if (_bufferClockwise[0] != _bufferClockwise[1])
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public static float DotProductXY(Vector3 vec1, Vector3 vec2)
         {
@@ -48,5 +92,40 @@ namespace DefaultNamespace
             Debug.Log($"(StaticMethod): Direction {clockwise}");
             return clockwise;
         }
+
+
+        public static bool DifferenceBetween(float value1, float value2)
+        {
+            float bigValue;
+            float smallValue;
+
+            if (Mathf.Abs(value1) > Mathf.Abs(value2))
+            {
+                bigValue = value1;
+                smallValue = value2;
+            }
+            else
+            {
+                bigValue = value2;
+                smallValue = value1;
+            }
+
+            if ((bigValue - smallValue) > Constants.AngleEpsilon)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public static float AngleWithChangeDirection(float _currentValue)
+        {
+            float new_current = (360f - _currentValue) + 180f;
+            return new_current;
+        }
+        
     }
 }

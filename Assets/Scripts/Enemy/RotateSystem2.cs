@@ -24,6 +24,8 @@ namespace Enemy
         [SerializeField]
         private float _xValue = 90;
 
+        private float _newXValue;
+
         private Vector3 Ray1;
         private Vector3 Ray2;
         private Vector3 _crossVector;
@@ -34,34 +36,22 @@ namespace Enemy
         private Quaternion _current;
         private Quaternion _next;
         private float _futureAngle;
+        private bool _endedRotate;
 
-
-        //private const float _yValue = 270;
-
-        //private const float _zValue = 90;
         private Vector3 _targetPosition;
 
         private Coroutine _lerpCoroutine;
         private bool rotate;
-        
 
 
         private void Start()
         {
             _targetPosition = RectTarget.transform.position;
             StartCoroutine(TestCoroutine());
-            //StartCoroutine(MoveCoroutine());
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                //CalculateAngleAndDirection();
-                //RotateObject(_angleDegrees);
-            }
-
-            //StartCoroutine(CalculateAngleAndDirection());
 
         }
 
@@ -69,25 +59,28 @@ namespace Enemy
         {
             while (true)
             {
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(1.0f);
                 Debug.Log("Coroutine ended: " + Time.time + "seconds");
                 CalculateAngleAndDirection();
                 GetPositions();
-                //StartCoroutine(MoveCoroutine());
                 if (Mathf.Abs(_angleDegrees) > 10f)
                 {
-                    
                     if (_lerpCoroutine != null)
                     {
-                        StopCoroutine(_lerpCoroutine);
+                        if (_endedRotate)
+                        {
+                            StopCoroutine(_lerpCoroutine);
+                            _endedRotate = false;
+                        }
                     }
-                    _lerpCoroutine = StartCoroutine(RotateCoroutine(_current, _next));
-                    _xValue = _xValue - _angleDegrees;
+                    //_lerpCoroutine = StartCoroutine(RotateCoroutine(_current, _next));
+                    _lerpCoroutine = StartCoroutine(RotateCoroutine2(_current, _next));
+                    _xValue = _xValue + _angleDegrees;
                 }
                 else
                 {
                     Debug.Log("Корутина поворота остановлена");
-                    StopCoroutine(RotateCoroutine(_current,_next));
+                    StopCoroutine(RotateCoroutine2(_current,_next));
                 }
 
             }
@@ -153,13 +146,59 @@ namespace Enemy
             }
         }
 
+        private IEnumerator RotateCoroutine2(Quaternion current, Quaternion next)
+        {
+            float step = LerpSpeed * Time.deltaTime;
+            while (MathModule.DifferenceBetween(Rect.transform.rotation.eulerAngles.x, _futureAngle))
+            {
+                Rect.transform.rotation = Quaternion.RotateTowards(current, next, step);
+                step += LerpSpeed * Time.deltaTime;
+                yield return null;
+            }
+            _endedRotate = true;
+            yield break;
+        }
+
         private void GetPositions()
         {
+            Debug.Log($"Clockwise: {_clockwise}");
+            if (_clockwise < 0)
+            {
+                GetNegativeQuaternion();
+                Debug.Log($"Current Euler X: {_xValue} Y: {Constants._negativeYValue}, Z: {Constants._negativeZValue}" +
+                          $"-  Next Euler X: {_futureAngle} Y: {Constants._negativeYValue} Z: {Constants._negativeZValue}");
+                
+            }
+            else
+            {
+                GetPositiveQuaternion();
+                Debug.Log($"Current Euler X: {_xValue} Y: {Constants._yValue}, Z: {Constants._zValue}" +
+                          $"-  Next Euler X: {_futureAngle} Y: {Constants._yValue} Z: {Constants._zValue}");
+            }
+        }
+
+        private void GetNegativeQuaternion()
+        {
+            if (MathModule.CompareBuffValue())
+            {
+                _xValue = MathModule.AngleWithChangeDirection(_xValue);
+            }
+            _current = Quaternion.Euler(_xValue, Constants._negativeYValue, Constants._negativeZValue);
+            _futureAngle = _xValue + _angleDegrees;
+            _next = Quaternion.Euler(_futureAngle, Constants._negativeYValue, Constants._negativeZValue);
+            //Rect.transform.rotation = _next;
+        }
+
+        private void GetPositiveQuaternion()
+        {
+            if (MathModule.CompareBuffValue())
+            {
+                _xValue = MathModule.AngleWithChangeDirection(_xValue);
+            }
             _current = Quaternion.Euler(_xValue, Constants._yValue, Constants._zValue);
-            _futureAngle = _xValue - _angleDegrees;
+            _futureAngle = _xValue + _angleDegrees;
             _next = Quaternion.Euler(_futureAngle, Constants._yValue, Constants._zValue);
-            Debug.Log($"Current Euler X: {_xValue} Y: {Constants._yValue}, Z: {Constants._zValue}" +
-                      $"-  Next Euler X: {_futureAngle} Y: {Constants._yValue} Z: {Constants._zValue}");
+            //Rect.transform.rotation = _next;
         }
 
         private void RotateObject(float angleDegrees)
@@ -182,6 +221,10 @@ namespace Enemy
             _angleDegrees = MathModule.TranslateAngleInDegrees(_angle);
             _crossVector = MathModule.CrossProduct(Ray1, Ray2);
             _clockwise = MathModule.GetClockWise(_crossVector);
+            MathModule.AddClockwiseInBuffer(_clockwise);
+            
+            Debug.Log($"Compare Result: {MathModule.CompareBuffValue()}");
+            //CheckBufferClockwiseBuffer();
         }
 
         private void CalculateDirections(GameObject obj1, GameObject obj2)
