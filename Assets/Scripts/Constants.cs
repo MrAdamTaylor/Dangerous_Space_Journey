@@ -24,12 +24,15 @@ public static class Constants
 
     #region Константы для Quaternion
 
-        public const float _yValue = 270;
-        public const float _zValue = 90;
+        public const float YVALUE = 270;
+        public const float ZVALUE = 90;
 
-        public const float _negativeYValue = 90;
-        public const float _negativeZValue = 270;
-        
+        public const float NEGATIVEYVALUE = 90;
+        public const float NEGATIVEZVALUE = 270;
+
+
+        public const float MAXANGLEVALUE = 360;
+
         #endregion
 
 }

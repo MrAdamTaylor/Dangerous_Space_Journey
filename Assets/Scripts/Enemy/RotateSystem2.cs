@@ -165,15 +165,15 @@ namespace Enemy
             if (_clockwise < 0)
             {
                 GetNegativeQuaternion();
-                Debug.Log($"Current Euler X: {_xValue} Y: {Constants._negativeYValue}, Z: {Constants._negativeZValue}" +
-                          $"-  Next Euler X: {_futureAngle} Y: {Constants._negativeYValue} Z: {Constants._negativeZValue}");
+                Debug.Log($"Current Euler X: {_xValue} Y: {Constants.NEGATIVEYVALUE}, Z: {Constants.NEGATIVEZVALUE}" +
+                          $"-  Next Euler X: {_futureAngle} Y: {Constants.NEGATIVEYVALUE} Z: {Constants.NEGATIVEZVALUE}");
                 
             }
             else
             {
                 GetPositiveQuaternion();
-                Debug.Log($"Current Euler X: {_xValue} Y: {Constants._yValue}, Z: {Constants._zValue}" +
-                          $"-  Next Euler X: {_futureAngle} Y: {Constants._yValue} Z: {Constants._zValue}");
+                Debug.Log($"Current Euler X: {_xValue} Y: {Constants.YVALUE}, Z: {Constants.ZVALUE}" +
+                          $"-  Next Euler X: {_futureAngle} Y: {Constants.YVALUE} Z: {Constants.ZVALUE}");
             }
         }
 
@@ -183,9 +183,11 @@ namespace Enemy
             {
                 _xValue = MathModule.AngleWithChangeDirection(_xValue);
             }
-            _current = Quaternion.Euler(_xValue, Constants._negativeYValue, Constants._negativeZValue);
+            _current = Quaternion.Euler(_xValue, Constants.NEGATIVEYVALUE, Constants.NEGATIVEZVALUE);
             _futureAngle = _xValue + _angleDegrees;
-            _next = Quaternion.Euler(_futureAngle, Constants._negativeYValue, Constants._negativeZValue);
+            _futureAngle = MathModule.AroundAngle(_futureAngle);
+
+            _next = Quaternion.Euler(_futureAngle, Constants.NEGATIVEYVALUE, Constants.NEGATIVEZVALUE);
             //Rect.transform.rotation = _next;
         }
 
@@ -195,9 +197,10 @@ namespace Enemy
             {
                 _xValue = MathModule.AngleWithChangeDirection(_xValue);
             }
-            _current = Quaternion.Euler(_xValue, Constants._yValue, Constants._zValue);
+            _current = Quaternion.Euler(_xValue, Constants.YVALUE, Constants.ZVALUE);
             _futureAngle = _xValue + _angleDegrees;
-            _next = Quaternion.Euler(_futureAngle, Constants._yValue, Constants._zValue);
+            _futureAngle = MathModule.AroundAngle(_futureAngle);
+            _next = Quaternion.Euler(_futureAngle, Constants.YVALUE, Constants.ZVALUE);
             //Rect.transform.rotation = _next;
         }
 
@@ -205,9 +208,9 @@ namespace Enemy
         {
             if (Mathf.Abs(angleDegrees) > 10f)
             {
-                var current = Quaternion.Euler(_xValue, Constants._yValue, Constants._zValue);
+                var current = Quaternion.Euler(_xValue, Constants.YVALUE, Constants.ZVALUE);
                 float xTemp = _xValue - _angleDegrees;
-                Quaternion smoth = Quaternion.Euler(xTemp, Constants._yValue, Constants._zValue);
+                Quaternion smoth = Quaternion.Euler(xTemp, Constants.YVALUE, Constants.ZVALUE);
                 //SmothRotate(current, smoth, _speed);
                 _xValue = _xValue - _angleDegrees;
             }
