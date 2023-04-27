@@ -74,9 +74,6 @@ public class Death : MonoBehaviour
     {
         if (_appartSpecialEffectAdder != null)
         {
-            //TODO движок выбирает первый попавшийся эффект, это надо исправить
-            //_appartSpecialEffectAdder = gameObject.GetComponent<UnstakSpecialEffectAdder>();
-            Debug.Log("Есть пробитие!");
             _appartSpecialEffectAdder.enabled = false;
             isSpecialEffect = true;
         }
@@ -128,19 +125,6 @@ public class Death : MonoBehaviour
             IsDead.Value = true;
             _explosionEffect.ExplosionEffectCreate();
             this.gameObject.SetActive(false);
-
-            /*if (isSpecialEffect)
-            {
-                _appartSpecialEffectAdder.enabled = true;
-                Debug.Log("Эффект есть!");
-                isSpecialEffect = false;
-                _appartSpecialEffectAdder.PrepareSpecialEffects();
-                _appartSpecialEffectAdder.AddSpecialEffect();
-            }
-            else
-            {
-                _appartSpecialEffectAdder.enabled = false;
-            }*/
         }
     }
 

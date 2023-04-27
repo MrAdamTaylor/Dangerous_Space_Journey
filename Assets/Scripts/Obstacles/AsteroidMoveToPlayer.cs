@@ -9,22 +9,21 @@ public class AsteroidMoveToPlayer : MonoBehaviour
     [FormerlySerializedAs("maxThrust")] [SerializeField]private float _maxThrust;
     [SerializeField] private Rigidbody _asteroidRigidBody;
     [SerializeField] private Transform _player;
-
-
-
-
+    
     void OnEnable()
     {
         transform.LookAt(_player);
+        _asteroidRigidBody = transform.GetComponent<Rigidbody>();
+        _asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
     }
-
+    
     private void Start()
     {
-        _asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
+        //_asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
     }
 
     private void Update()
     {
-        _asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
+        //_asteroidRigidBody.AddForce(transform.forward * Time.deltaTime * _maxThrust);
     }
 }

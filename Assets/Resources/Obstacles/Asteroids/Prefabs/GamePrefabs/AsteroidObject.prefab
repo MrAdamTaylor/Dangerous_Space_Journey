@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2971053057171587564}
-  - component: {fileID: 2971053057171587565}
+  - component: {fileID: 4759828002241366329}
   m_Layer: 0
   m_Name: AsteroidObject
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2971053057171587565
+--- !u!114 &4759828002241366329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2971053057171587566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2a4ca0514f871348af62d0d901ae71a, type: 3}
+  m_Script: {fileID: 11500000, guid: b61132577fcd49598904955b3ff192dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   self: {fileID: 2971053057593896052}
@@ -50,7 +50,8 @@ MonoBehaviour:
   _hitLayer:
     serializedVersion: 2
     m_Bits: 256
-  ExplosiveForce: 100
+  _explosiveForce: 100
+  _timeDuration: 2
 --- !u!1001 &6529674352305469270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +70,11 @@ PrefabInstance:
     - target: {fileID: 4479656001732342287, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 8224526590340779430, guid: 3fb7bff92e6e9ec43a6b313a57ecf143, type: 3}
+      objectReference: {fileID: 6664280881838771329, guid: d15129eb2c780de48b587854fa781e5d, type: 3}
+    - target: {fileID: 4479656001732342287, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8333169187807585658, guid: 8b0bb30df7486614b980f97eff9af08d, type: 3}
       propertyPath: m_Radius
       value: 1

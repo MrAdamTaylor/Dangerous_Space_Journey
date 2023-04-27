@@ -7,7 +7,6 @@ using Services.AssertService;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(AsteroidHealth))]
 public class ExplosionEffect : SpecialEffectCreater
 {
     [SerializeField] private string path;

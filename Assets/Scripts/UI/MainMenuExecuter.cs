@@ -1,4 +1,5 @@
 using System;
+using Infrastructure;
 using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,6 @@ namespace UI
 
         [SerializeField] private Button _restart;
         [SerializeField] private Button _exit;
-
 
         private void Start()
         {
@@ -36,7 +36,7 @@ namespace UI
             // TODO: _sceneController.ReloadScene()
             // On Restart
             _restart.OnClickAsObservable()
-                .Subscribe(_ =>  SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex))
+                .Subscribe(_ => SceneLoadController.ReloadScene())  //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex)
                 .AddTo(this);
             
             // On Exit
@@ -46,3 +46,4 @@ namespace UI
         }
     }
 }
+

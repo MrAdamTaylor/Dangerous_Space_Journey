@@ -11,11 +11,6 @@ namespace Enemy
     {
         [SerializeField] private GameObject Rect;
         [SerializeField] private GameObject RectTarget;
-        
-        
-        [SerializeField] 
-        [Range(15,30f)]
-        private float _speed = 15f;
 
         [SerializeField]
         [Range(0,100f)]
@@ -133,7 +128,6 @@ namespace Enemy
                 }
                 else
                 {
-                    //TODO почему - то с отрицательными числами плохо работает. Игнорирует условие остановки
                     step -= LerpSpeed * Time.deltaTime;
                     if (Rect.transform.rotation.eulerAngles.x < _futureAngle)
                     {

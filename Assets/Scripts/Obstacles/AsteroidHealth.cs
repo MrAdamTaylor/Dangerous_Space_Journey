@@ -5,7 +5,7 @@ using UnityEngine;
 public class AsteroidHealth : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
-    private int Health { get; set; } //TODO чекнуть работу
+    private int Health { get; set; } 
     private SplitersSpawn _splitersSpawner;
     private ExplosionEffect _explosionEffect;
     private bool isSpliters;
