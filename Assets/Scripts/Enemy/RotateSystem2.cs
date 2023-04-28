@@ -19,6 +19,8 @@ namespace Enemy
         [SerializeField]
         private float _xValue = 90;
 
+        [SerializeField] private Quaternion myQuaternion;
+        
         private float _newXValue;
 
         private Vector3 Ray1;
@@ -41,13 +43,20 @@ namespace Enemy
 
         private void Start()
         {
+            Debug.Log($"Круги Эйлера до: (" + transform.rotation.eulerAngles.x 
+                                            + ") - (" + transform.rotation.eulerAngles.y + ") - ("
+                                            + transform.rotation.eulerAngles.z + ")");
+            
             _targetPosition = RectTarget.transform.position;
             StartCoroutine(TestCoroutine());
         }
 
         private void Update()
         {
-
+            Debug.Log($"Круги Эйлера после: (" + transform.rotation.eulerAngles.x 
+                                            + ") - (" + transform.rotation.eulerAngles.y + ") - ("
+                                            + transform.rotation.eulerAngles.z + ")");
+            myQuaternion = Rect.transform.rotation;
         }
 
         private IEnumerator TestCoroutine()
@@ -80,39 +89,7 @@ namespace Enemy
 
             }
         }
-
-        private IEnumerator LerpRotationFixedSpeed()
-        {
-            //Rect.transform.position = CenterTarget.position;
-            Debug.Log("Coroutine Rotate Start " + Time.time);
-            Rect.transform.rotation = Quaternion.identity;
-            
-            while (true)
-            {
-     
-                float step = LerpSpeed * Time.deltaTime;
-                while (Rect.transform.rotation.eulerAngles.y < 180)
-                {
-                    Debug.Log("<180");
-                    Debug.Log($"Current Angle: {Rect.transform.rotation.eulerAngles.y}");
-                    Rect.transform.rotation = Quaternion.RotateTowards(Quaternion.identity, Quaternion.Euler(0, 180, 0), step);
-                    //Debug.Log("Rotate! " + Time.time);
-                    step += LerpSpeed * Time.deltaTime;
-                    yield return null;
-                }
-
-                while (Rect.transform.rotation.eulerAngles.y > 0)
-                {
-                    Debug.Log(">0");
-                    Debug.Log($"Current Angle: {Rect.transform.rotation.eulerAngles.y}");
-                    Rect.transform.rotation = Quaternion.RotateTowards(Quaternion.Euler(0, 180, 0), Quaternion.identity, step);
-                    step += LerpSpeed * Time.deltaTime;
-                    yield return null;
-                }
-
-                //StopCoroutine(LerpRotationFixedSpeed());
-            }
-        }
+        
 
         private IEnumerator RotateCoroutine(Quaternion current, Quaternion next)
         {
@@ -177,12 +154,11 @@ namespace Enemy
             {
                 _xValue = MathModule.AngleWithChangeDirection(_xValue);
             }
-            _current = Quaternion.Euler(_xValue, Constants.NEGATIVEYVALUE, Constants.NEGATIVEZVALUE);
+            _current = Quaternion.Euler(_xValue,Constants.NEGATIVEYVALUE, Constants.NEGATIVEZVALUE);
             _futureAngle = _xValue + _angleDegrees;
             _futureAngle = MathModule.AroundAngle(_futureAngle);
 
-            _next = Quaternion.Euler(_futureAngle, Constants.NEGATIVEYVALUE, Constants.NEGATIVEZVALUE);
-            //Rect.transform.rotation = _next;
+            _next = Quaternion.Euler(_futureAngle,Constants.NEGATIVEYVALUE, Constants.NEGATIVEZVALUE);
         }
 
         private void GetPositiveQuaternion()
@@ -191,23 +167,10 @@ namespace Enemy
             {
                 _xValue = MathModule.AngleWithChangeDirection(_xValue);
             }
-            _current = Quaternion.Euler(_xValue, Constants.YVALUE, Constants.ZVALUE);
+            _current = Quaternion.Euler(_xValue,Constants.YVALUE, Constants.ZVALUE);
             _futureAngle = _xValue + _angleDegrees;
             _futureAngle = MathModule.AroundAngle(_futureAngle);
-            _next = Quaternion.Euler(_futureAngle, Constants.YVALUE, Constants.ZVALUE);
-            //Rect.transform.rotation = _next;
-        }
-
-        private void RotateObject(float angleDegrees)
-        {
-            if (Mathf.Abs(angleDegrees) > 10f)
-            {
-                var current = Quaternion.Euler(_xValue, Constants.YVALUE, Constants.ZVALUE);
-                float xTemp = _xValue - _angleDegrees;
-                Quaternion smoth = Quaternion.Euler(xTemp, Constants.YVALUE, Constants.ZVALUE);
-                //SmothRotate(current, smoth, _speed);
-                _xValue = _xValue - _angleDegrees;
-            }
+            _next = Quaternion.Euler(_futureAngle,Constants.YVALUE, Constants.ZVALUE);
         }
 
         private void CalculateAngleAndDirection()
@@ -221,12 +184,11 @@ namespace Enemy
             MathModule.AddClockwiseInBuffer(_clockwise);
             
             Debug.Log($"Compare Result: {MathModule.CompareBuffValue()}");
-            //CheckBufferClockwiseBuffer();
         }
 
         private void CalculateDirections(GameObject obj1, GameObject obj2)
         {
-            Vector3 selfForward = obj1.transform.forward;
+            Vector3 selfForward = -obj1.transform.up;
             Vector3 targedDirection = obj2.transform.position - transform.position;
             Debug.Log($"(this.name{this.name}): Obj1 position: {Rect.transform.position}, " +
                       $"Obj1 vectorForward: {selfForward}, " +

@@ -15,7 +15,7 @@ namespace Enemy.FSM.FSM_Test.Action
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
+            //_rigidbody = GetComponent<Rigidbody>();
             zPosition = transform.position.z;
             destination = new Vector3(0, 0, zPosition);
         }
