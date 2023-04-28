@@ -31,6 +31,10 @@ namespace Enemy.FSM.FSM_Test.Action
             
         }
 
+        public override void ExecuteCoroutine()
+        {
+        }
+
         private float CalculateDistance()
         {
             float distance = Vector3.Distance(destination, transform.position);

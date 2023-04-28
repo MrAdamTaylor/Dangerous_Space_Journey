@@ -2,19 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
-using Enemy.FSM.FSM_Test.Action;
-using Unity.Rendering.HybridV2;
 using UnityEngine;
 
-public class FollowToGoal : SomeAction
+public class RotateTo : MonoBehaviour
 {
-    //TODO это нужно вынести в ScriptableObject
     [SerializeField] private GameObject _player;
-    [SerializeField] private float _speed;
-    [SerializeField] private Rigidbody _enemyRigidbody;
-    [SerializeField] private float _angleSpeed;
-    [SerializeField] private float _angleTarget;
-    private Vector3 _direction;
+    [Range(0.1f, 0.5f)] [SerializeField] private float _time;
     
     private Vector3 Ray1;
     private Vector3 Ray2;
@@ -23,75 +16,39 @@ public class FollowToGoal : SomeAction
     private float _angleDegrees;
     private Vector3 _crossVector;
     private int _clockwise;
-    private RotateTo _rotateTo;
-    private Coroutine _rotateCoroutine;
-
-    #region Булевые переменные
-
-    private bool isRotate;
-    
-
-    #endregion
-    
-    private void Awake()
-    {
-        CheckRotateSystem();
-    }
+    private Coroutine _runningCoroutine;
 
     private void OnEnable()
     {
-        //if (isRotate)
-        //{
-          //  _rotateTo.StartCoroutineRotate();
-        //}
+        //StartCoroutineRotate();
     }
 
-    private void CheckRotateSystem()
+    /*public void StartCoroutineRotate()
     {
-        if (gameObject.GetComponent<RotateTo>() != null)
-        {
-            _rotateTo = GetComponent<RotateTo>();
-            //_rotateCoroutine = StartCoroutine(_rotateTo.RotateCoroutine());
-            isRotate = true;
-        }
-        else
-        {
-            isRotate = false;
-        }
-    }
+        if (_runningCoroutine == null)
+           _runningCoroutine = StartCoroutine(RotateCoroutine());
+    }*/
 
-    void Start()
+    /*public void StopCoroutineRotate()
     {
-        //_enemyRigidbody = transform.GetComponent<Rigidbody>();
-    }
+        if(_runningCoroutine != null)
+            StopCoroutine(RotateCoroutine());
+    }*/
 
-
-    public override void Execute()
+    private void Update()
     {
-        _direction = (_player.transform.position - transform.position).normalized;
-        _enemyRigidbody.MovePosition(_enemyRigidbody.position + _direction * _speed * Time.fixedDeltaTime);
-
-        if (isRotate)
-        {
-            _rotateTo.RotateToObject();
-        }
-
-        //_rotateTo.StopCoroutineRotate();
-            //_rotateTo.enabled = false;
         
-        //RotateTo();
     }
 
-    public override void ExecuteCoroutine()
+    //TODO хотел сделать через корутины, но не подумал зааранее при проектировании State Machine
+    /*public IEnumerator RotateCoroutine()
     {
-        /*if (isRotate)
-        {
-            _rotateTo.StartCoroutineRotate();
-            //_rotateTo.enabled = true;
-        }*/
-    }
+        yield return new WaitForSeconds(_time);
+        RotateToObject();
+        Debug.Log($"Я корутина поворота работаю {Time.time}");
+    }*/
 
-    private void RotateTo()
+    public void RotateToObject()
     {
         CalculateDirection(gameObject, _player);
         _dot = MathModule.DotProductXY(Ray1, Ray2);
@@ -124,5 +81,10 @@ public class FollowToGoal : SomeAction
 
         Ray1 = selfForward;
         Ray2 = targedDirection;
+    }
+
+    private void OnDisable()
+    {
+        //StartCoroutineRotate();
     }
 }

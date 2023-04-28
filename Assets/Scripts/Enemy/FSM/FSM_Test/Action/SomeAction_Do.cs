@@ -12,5 +12,9 @@ namespace Enemy.FSM.FSM_Test.Action
         {
             Debug.Log("Я делаю!");
         }
+
+        public override void ExecuteCoroutine()
+        {
+        }
     }
 }
