@@ -8,12 +8,12 @@ namespace SpaceShipBus
     public class MoveHandler : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidBSpacesip;
-        [SerializeField] private float _thrust;
-        [SerializeField] private float _turnSpeed;
+        [Range(5f,25f)][SerializeField] private float _thrust = 10f;
+        [Range(5f,50f)][SerializeField] private float _turnSpeed = 40f;
 
         private IInputServiceMove _inputServiceMove;
-        private Vector3 _movementVector;
-        private float _thrustSpeed;
+        private Vector3 movementVector;
+        //private float thrustSpeed;
     
         private void OnEnable()
         {
@@ -31,11 +31,12 @@ namespace SpaceShipBus
             _inputServiceMove = Game.InputServiceMove;
             _rigidBSpacesip = GetComponent<Rigidbody>();
 
-            _movementVector = -transform.up;
-            _thrustSpeed = _thrust * Time.deltaTime;
+            movementVector = -transform.up;
+            float thrustSpeed = _thrust * Time.deltaTime * Constants.COEF_PLAYER_MOVE;
+            float turnSpeed = _turnSpeed * Time.deltaTime * Constants.COEF_TURN_MOVE;
             if(Input.GetKey(KeyCode.W))
-                _inputServiceMove.AddForce(ref _rigidBSpacesip, _movementVector, _thrustSpeed);
-            _inputServiceMove.ProcessRotation(_turnSpeed, transform);
+                _inputServiceMove.AddForce(ref _rigidBSpacesip, movementVector, thrustSpeed);
+            _inputServiceMove.ProcessRotation(turnSpeed, transform);
 
         }
 

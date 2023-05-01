@@ -17,8 +17,8 @@ TagManager:
   - Enemy
   - BrokableObjects
   - ShipSpliters
-  - 
-  - 
+  - Occlude
+  - Ignore
   - 
   - 
   - 

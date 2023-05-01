@@ -21,7 +21,19 @@ public static class Constants
     
     #endregion
 
+    #region Константы коэффициенты для игрока
 
+        public const float COEF_PLAYER_MOVE = 1000f;
+        public const float COEF_TURN_MOVE = 500f;
+
+    #endregion
+
+    #region Константы для взрыва
+
+        public const float COEF_EXPLOSION_POWER = 10f;
+        
+    #endregion
+    
     #region Константы для Quaternion
 
         public const float YVALUE = 0; //90
@@ -33,6 +45,14 @@ public static class Constants
 
         public const float MAXANGLEVALUE = 360;
 
-        #endregion
+    #endregion
+
+    #region Константы для времени жизни GIZMOS
+
+        public const float MIDDLE_LIFE_TIME = 5f;
+        public const float SHORT_LIFE_TIME = 1f;
+
+
+    #endregion
 
 }

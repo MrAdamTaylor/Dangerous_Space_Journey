@@ -17,7 +17,7 @@ public class ExplosionWithApparts : ExplosionForce
         Hits = new Collider[_maxHits];
         if ((self.activeSelf == false))
         {
-            PhysicsDebug.DrawDebug(StartPoint(), _radius, 5f);
+            PhysicsDebug.DrawDebug(StartPoint(), _radius, Constants.MIDDLE_LIFE_TIME);
             int hits = Physics.OverlapSphereNonAlloc(StartPoint(), _radius, Hits, _hitLayer);
 
             for (int i = 0; i < hits; i++)
@@ -25,7 +25,7 @@ public class ExplosionWithApparts : ExplosionForce
                 if (Hits[i].TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
                 {
                     float distance = Vector3.Distance(StartPoint(), Hits[i].transform.position);
-                    rigidbody.AddExplosionForce(_explosiveForce, StartPoint(), _radius);
+                    rigidbody.AddExplosionForce(_explosiveForce * Constants.COEF_EXPLOSION_POWER, StartPoint(), _radius);
                 }
             }
             StartCoroutine(disableObject());

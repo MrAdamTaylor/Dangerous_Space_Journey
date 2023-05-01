@@ -27,7 +27,7 @@ namespace DefaultNamespace
             {
                 _bufferClockwise[0] = value;
             }
-            Debug.Log($"Buffer: CurrentValue: {_bufferClockwise[0]} PastValue: {_bufferClockwise[1]}");
+            //Debug.Log($"Buffer: CurrentValue: {_bufferClockwise[0]} PastValue: {_bufferClockwise[1]}");
         }
 
         public static bool CompareBuffValue()
@@ -68,14 +68,14 @@ namespace DefaultNamespace
         public static float AngleBetween(float dot, Vector3 vec1, Vector3 vec2)
         {
             float angle = Mathf.Acos(dot / (vec1.magnitude * vec2.magnitude));
-            Debug.Log($"(StaticMethod): Magnitude from vec1: {vec1.magnitude}, Magnitude from vec2: {vec2.magnitude}, Angle between {angle}");
+            //Debug.Log($"(StaticMethod): Magnitude from vec1: {vec1.magnitude}, Magnitude from vec2: {vec2.magnitude}, Angle between {angle}");
             return angle;
         }
 
         public static float TranslateAngleInDegrees(float angle)
         {
             float _angleDegrees = angle * Mathf.Rad2Deg;
-            Debug.Log($"(StaticMethod): Angle in Degree = {_angleDegrees} ");
+            //Debug.Log($"(StaticMethod): Angle in Degree = {_angleDegrees} ");
             return _angleDegrees;
         }
 
@@ -85,7 +85,7 @@ namespace DefaultNamespace
             float yMult = v.x * w.z - v.z * w.x;
             float zMult = v.x * w.y - v.y * w.x;
             Vector3 cross = new Vector3(xMult, yMult, zMult);
-            Debug.Log($"(Static Method): Cross Vector: {cross}");
+            //Debug.Log($"(Static Method): Cross Vector: {cross}");
             //Debug.DrawRay(Rect.transform.position, cross, Color.blue, 10f);
             return cross;
         }
@@ -98,7 +98,7 @@ namespace DefaultNamespace
             {
                 clockwise = 1; 
             }
-            Debug.Log($"(StaticMethod): Direction {clockwise}");
+            //Debug.Log($"(StaticMethod): Direction {clockwise}");
             return clockwise;
         }
 

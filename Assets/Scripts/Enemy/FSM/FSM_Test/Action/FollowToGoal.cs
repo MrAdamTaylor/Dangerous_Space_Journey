@@ -12,23 +12,18 @@ public class FollowToGoal : SomeAction
     [SerializeField] private GameObject _player;
     [SerializeField] private float _speed;
     [SerializeField] private Rigidbody _enemyRigidbody;
-    [SerializeField] private float _angleSpeed;
-    [SerializeField] private float _angleTarget;
     private Vector3 _direction;
     
-    private Vector3 Ray1;
-    private Vector3 Ray2;
-    private float _dot;
-    private float _angle;
-    private float _angleDegrees;
-    private Vector3 _crossVector;
-    private int _clockwise;
     private RotateTo _rotateTo;
-    private Coroutine _rotateCoroutine;
+    private ShootToGoal _shootToGoal;
+    private StateOnDistance _stateOnDistance;
+
 
     #region Булевые переменные
 
     private bool isRotate;
+    private bool isShoot;
+    private bool isState;
     
 
     #endregion
@@ -36,14 +31,21 @@ public class FollowToGoal : SomeAction
     private void Awake()
     {
         CheckRotateSystem();
+        CheckShootSystem();
+        CheckStateSystem();
     }
 
-    private void OnEnable()
+    private void CheckStateSystem()
     {
-        //if (isRotate)
-        //{
-          //  _rotateTo.StartCoroutineRotate();
-        //}
+        if (gameObject.GetComponent<StateOnDistance>() != null)
+        {
+            _stateOnDistance = GetComponent<StateOnDistance>();
+            isState = true;
+        }
+        else
+        {
+            isState = false;
+        }
     }
 
     private void CheckRotateSystem()
@@ -51,7 +53,6 @@ public class FollowToGoal : SomeAction
         if (gameObject.GetComponent<RotateTo>() != null)
         {
             _rotateTo = GetComponent<RotateTo>();
-            //_rotateCoroutine = StartCoroutine(_rotateTo.RotateCoroutine());
             isRotate = true;
         }
         else
@@ -60,69 +61,69 @@ public class FollowToGoal : SomeAction
         }
     }
 
-    void Start()
+    private void CheckShootSystem()
     {
-        //_enemyRigidbody = transform.GetComponent<Rigidbody>();
+        if (gameObject.GetComponent<ShootToGoal>() != null)
+        {
+            _shootToGoal = GetComponent<ShootToGoal>();
+            isShoot = true;
+        }
+        else
+        {
+            isShoot = false;
+        }
     }
-
 
     public override void Execute()
     {
-        _direction = (_player.transform.position - transform.position).normalized;
-        _enemyRigidbody.MovePosition(_enemyRigidbody.position + _direction * _speed * Time.fixedDeltaTime);
-
-        if (isRotate)
+        if (isState)
         {
-            _rotateTo.RotateToObject();
+            if (_stateOnDistance.CheckDistance(transform,_player.transform))
+            {
+                OtherActions();
+                //MoveToGoal();
+            }
+            else
+            {
+                MoveToGoal();
+                OtherActions();
+            }
+            
+        }
+        else
+        {
+            MoveToGoal();
+            OtherActions();
         }
 
-        //_rotateTo.StopCoroutineRotate();
-            //_rotateTo.enabled = false;
-        
-        //RotateTo();
+        //MoveToGoal();
+        //OtherActions();
+    }
+
+    private void OtherActions()
+    {
+        /*if (isRotate)
+        {
+            _rotateTo.RotateToObject();
+        }*/
+        if (isShoot)
+        {
+            _shootToGoal.Shoot();
+        }
+    }
+
+    private void MoveToGoal()
+    {
+        _direction = (_player.transform.position - transform.position).normalized;
+        _enemyRigidbody.MovePosition(_enemyRigidbody.position + _direction * _speed * Time.deltaTime);
     }
 
     public override void ExecuteCoroutine()
     {
-        /*if (isRotate)
+        if (isRotate)
         {
-            _rotateTo.StartCoroutineRotate();
-            //_rotateTo.enabled = true;
-        }*/
-    }
-
-    private void RotateTo()
-    {
-        CalculateDirection(gameObject, _player);
-        _dot = MathModule.DotProductXY(Ray1, Ray2);
-        _angle = MathModule.AngleBetween(_dot, Ray1, Ray2);
-        _angleDegrees = MathModule.TranslateAngleInDegrees(_angle);
-        _crossVector = MathModule.CrossProduct(Ray1, Ray2);
-        _clockwise = MathModule.GetClockWise(_crossVector);
-        Debug.Log($"Направление угла: {_clockwise}");
-        float newAngle = transform.eulerAngles.z + (_clockwise * _angleDegrees);
-        if (newAngle < 0)
-        {
-            newAngle = Mathf.Abs(newAngle) + 180;
+            //Debug.Log("Поворот: ");
+            _rotateTo.RotateToObject();
         }
-
-        float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.z, transform.eulerAngles.z + (_clockwise * _angleDegrees),
-            newAngle);
-        transform.eulerAngles = new Vector3(0, 0, angle);
-    }
-
-    private void CalculateDirection(GameObject obj1, GameObject obj2)
-    {
-        Vector3 selfForward = -obj1.transform.up;
-        Vector3 targedDirection = obj2.transform.position - transform.position;
-        Debug.Log($"(this.name{this.name}): Obj1 position: {transform.position}, " +
-                  $"Obj1 vectorForward: {selfForward}, " +
-                  $"Obj2: {_player.transform.position} " +
-                  $"Direction between: {targedDirection}");
-        Debug.DrawRay(transform.position, selfForward * 35, Color.green, 2);
-        Debug.DrawRay(transform.position, targedDirection, Color.red, 2);
-
-        Ray1 = selfForward;
-        Ray2 = targedDirection;
     }
 }

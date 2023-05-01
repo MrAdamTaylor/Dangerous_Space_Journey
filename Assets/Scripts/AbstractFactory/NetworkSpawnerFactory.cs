@@ -39,5 +39,10 @@ namespace AbstractFactory
         {
             throw new System.NotImplementedException();
         }
+
+        public GameObject SpawnMovingObject(string path, Transform position, Vector3 direction, float speed)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

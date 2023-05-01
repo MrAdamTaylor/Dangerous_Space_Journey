@@ -80,7 +80,7 @@ public class Death : MonoBehaviour
         else
         {
             isSpecialEffect = false;
-            Debug.Log("Нет пробития!");
+            //Debug.Log("Нет пробития!");
         }
     }
 
@@ -100,12 +100,12 @@ public class Death : MonoBehaviour
 
     public void Safety()
     {
-        Debug.Log("Безопасность!");
+        //Debug.Log("Безопасность!");
     }
 
     public void Die()
     {
-        Debug.Log("Смерть!");
+        //Debug.Log("Смерть!");
         
         if (isUnstack && !IsDead.Value)
         {

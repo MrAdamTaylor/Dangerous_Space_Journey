@@ -38,7 +38,7 @@ namespace SpaceShipBus
 
         private void TriggerEnter(Collider obj)
         {
-            Debug.Log("Нет класса - пойдём!");
+            //Debug.Log("Нет класса - пойдём!");
         }
 
 

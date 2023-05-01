@@ -38,7 +38,7 @@ namespace Enemy.FSM.FSM_Test
                     _stateMachine.ChangeState(_transitions[i]._toStateName);
                 }
             }
-            //_myAction.ExecuteCoroutine();
+            _myAction.ExecuteCoroutine();
         }
 
         public override void UpdatePhysics()

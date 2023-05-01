@@ -47,5 +47,12 @@ namespace AbstractFactory
         {
             throw new System.NotImplementedException();
         }
+
+        public GameObject SpawnMovingObject(string path, Transform position, Vector3 direction, float speed)
+        {
+            GameObject movingObject = _factoryAssert.Instantiate(path, position.position);
+            movingObject.GetComponent<Rigidbody>().AddForce(direction * speed, ForceMode.Impulse);
+            return movingObject;
+        }
     }
 }
