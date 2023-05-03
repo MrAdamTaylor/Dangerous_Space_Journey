@@ -9,7 +9,7 @@ namespace Enemy.FSM.FSM_Test
     {
         [SerializeField] protected string _currentStateName;
         private BaseState _currentState;
-    
+
         private BaseState tempState;
 
 
@@ -29,18 +29,11 @@ namespace Enemy.FSM.FSM_Test
 
         private void Start()
         {
-            if (_currentState != null)
-            {
-                _currentState.Enter();
-            }
-
             GetInitialState();
         }
     
         private void Update()
         {
-            //GetInitialState();
-        
             if (_currentState != null)
             {
                 _currentState.UpdateLogic();
@@ -65,7 +58,7 @@ namespace Enemy.FSM.FSM_Test
 
         public void ChangeState(string KeyName)
         {
-            _currentState.Exit();
+            _currentState?.Exit();
             if (states.TryGetValue(KeyName, out _currentState))
             {
                 _currentState.Enter();
@@ -74,12 +67,10 @@ namespace Enemy.FSM.FSM_Test
             {
                 throw new Exception("Состояние не найдено");
             }
-            //_currentState = newState;
         }
     
         protected virtual BaseState GetInitialState()
         {
-            //BaseState currentAwakeState = new BaseStateImplement();
         
             if (states.TryGetValue(_currentStateName, out _currentState))
             {
@@ -97,21 +88,4 @@ namespace Enemy.FSM.FSM_Test
             GUILayout.Label($"<color='black'><size=120>{content}</size></color>");
         }
     }
-
-    /*public class EnemyStateMachine : NewStateMachine
-    {
-
-    
-        public void Awake()
-        {
-        
-        }
-
-        public void Update()
-        {
-        
-        }
-        
-        
-    }*/
 }

@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Enemy
   - EnemyTurrel
+  - Target
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - whatIsGround
   - Water
   - UI
   - 

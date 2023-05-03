@@ -228,8 +228,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPath: Prefabs/Bullet
-  _bullet: {fileID: 1024141533061017883, guid: fe8d3da119b14c24a873e803178bbffc, type: 3}
-  _goal: {fileID: 0}
   _maxDistance: 45
   _attackingMask:
     serializedVersion: 2

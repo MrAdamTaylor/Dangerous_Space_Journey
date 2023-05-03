@@ -980,8 +980,54 @@ PrefabInstance:
       propertyPath: _goal
       value: 
       objectReference: {fileID: 451539825}
+    - target: {fileID: 5481240338015866296, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+      propertyPath: _stateInfoArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481240338015866296, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+      propertyPath: _stateInfoArray.Array.data[3]._action
+      value: 
+      objectReference: {fileID: 1221029347}
+    - target: {fileID: 5481240338015866296, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+      propertyPath: _stateInfoArray.Array.data[3]._stateName
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481240338015866296, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+      propertyPath: _stateInfoArray.Array.data[3]._stateTransitions.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481240338015866296, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+      propertyPath: _stateInfoArray.Array.data[3]._stateTransitions.Array.data[0]._condition
+      value: 
+      objectReference: {fileID: 1221029346}
+    - target: {fileID: 5481240338015866296, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+      propertyPath: _stateInfoArray.Array.data[3]._stateTransitions.Array.data[0]._toStateName
+      value: Idle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+--- !u!114 &1221029346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6371456012722495069, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+  m_PrefabInstance: {fileID: 1221029345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193895187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913bc8109ae246ce84330bb785782c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1221029347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2118636889106288272, guid: 2cb17e70fa365e94eb9cb0ba2567a42c, type: 3}
+  m_PrefabInstance: {fileID: 1221029345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 193895187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d8e38799bd9c44db7a2dd58231f71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355801976
 GameObject:
   m_ObjectHideFlags: 0
